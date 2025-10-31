@@ -1,6 +1,6 @@
 ---
 // Import section components
-import { SITE } from '@data/constants'
+import { SITE, OG } from '@data/constants'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
@@ -22,7 +22,29 @@ const { Content } = await post.render()
 const pageTitle: string = `${post.data.title} | ${SITE.title}`
 ---
 
-<MainLayout title={pageTitle}>
+<MainLayout
+  title={`${post.data.title} | TEDxNCIT`}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    description: post.data.description,
+    image: post.data.cardImage,
+    author: {
+      '@type': 'Person',
+      name: SITE.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.title,
+      logo: {
+        '@type': 'ImageObject',
+        url: OG.image,
+      },
+    },
+    url: `${SITE.url}insights/${post.slug}`,
+  }}
+>
   <section class="py-6 sm:py-8 lg:py-12">
     <div class="mx-auto max-w-screen-xl px-4 md:px-8">
       <div class="grid gap-8 md:grid-cols-3 lg:gap-12">

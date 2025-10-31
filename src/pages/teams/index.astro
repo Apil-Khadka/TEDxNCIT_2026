@@ -2,6 +2,7 @@
 import MainLayout from '@/layouts/MainLayout.astro'
 import MainSection from '@components/ui/blocks/MainSection.astro'
 import TeamSection from '@components/sections/team/TeamSection.astro'
+import { TEAMS_SEO, OG, SITE } from '@data/constants'
 
 // const coreTeamMembers = [
 //   {
@@ -118,6 +119,17 @@ const coreTeamMembers = [
       linkedIn: 'https://www.linkedin.com/in/apil-khadka/',
     },
   },
+  {
+    name: 'Niraj Bhatta',
+    role: 'Partnerships & Sponsorships',
+    img: 'ebl8q4nmkftyqxcwqkro.jpg',
+    imgAlt: 'Niraj Bhatta ',
+    socials: {
+      github: 'https://github.com/Niraj-Bhatta',
+      instagram: 'https://www.instagram.com/niraj_bhatta_4/',
+      linkedIn: 'www.linkedin.com/in/nirajbhatta559',
+    },
+  },
 ]
 
 const advisors = [
@@ -192,7 +204,18 @@ const advisors = [
 const pageTitle = `Teams | TEDx`
 ---
 
-<MainLayout title={pageTitle}>
+<MainLayout
+  title={TEAMS_SEO.title}
+  description={TEAMS_SEO.description}
+  structuredData={TEAMS_SEO.structuredData}
+  meta={[
+    { property: 'og:title', content: TEAMS_SEO.title },
+    { property: 'og:description', content: TEAMS_SEO.description },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${SITE.url}teams` },
+    { property: 'og:image', content: OG.image },
+  ]}
+>
   <MainSection
     title="Meet the Team"
     subTitle="Discover the passionate individuals who bring TEDx events to life. From our core team to our advisors and volunteers, each member plays a vital role in making our events memorable."

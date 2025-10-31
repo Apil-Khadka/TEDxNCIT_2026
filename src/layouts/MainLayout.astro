@@ -7,7 +7,13 @@ import { SITE } from '@data/constants'
 const { title = SITE.title, meta, structuredData, lang = 'en' } = Astro.props
 interface Props {
   title?: string
-  meta?: string
+  description?: string // Added description property
+  meta?:
+    | string
+    | Array<
+        | { property: string; content: string }
+        | { property: string; content: ImageMetadata }
+      >
   structuredData?: object
   lang?: string
 }

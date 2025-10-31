@@ -7,6 +7,7 @@ import CardSmall from '@components/ui/cards/CardSmall.astro'
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import { SITE } from '@data/constants'
+import { SPEAKERS_SEO, OG } from '@data/constants'
 
 // Fetching all the speaker related content and sorting it by main.id
 const speaker: CollectionEntry<'speakers'>[] = (
@@ -28,24 +29,17 @@ const pageTitle: string = `Speakers | ${SITE.title}`
 ---
 
 <MainLayout
-  title={pageTitle}
-  structuredData={{
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': 'https://tedx.ncit.edu.np/speakers',
-    url: 'https://tedx.ncit.edu.np/speakers',
-    name: 'Speakers | TEDxNCIT',
-    description:
-      'TEDxNCIT is an independently organized TED event that we are hosting here at the Nepal College of Information Technology (NCIT). Like other TEDx events, TEDxNCIT operates under a license from TED, a nonprofit organization devoted to spreading ideas in the form of short, powerful talks.',
-    isPartOf: {
-      '@type': 'WebSite',
-      url: 'https://tedx.ncit.edu.np',
-      name: 'TEDxNCIT',
-      description:
-        'TEDxNCIT, hosted by Nepal College of Information Technology (NCIT), is an independently organized TED event. It features short, powerful talks under a license from TED.',
-    },
-    inLanguage: 'en-US',
-  }}
+  title={SPEAKERS_SEO.title}
+  description={SPEAKERS_SEO.description}
+  structuredData={SPEAKERS_SEO.structuredData}
+  meta={[
+    // Adding Open Graph (OG) tags
+    { property: 'og:title', content: SPEAKERS_SEO.title },
+    { property: 'og:description', content: SPEAKERS_SEO.description },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${SITE.url}speakers` },
+    { property: 'og:image', content: OG.image },
+  ]}
 >
   <div
     class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
