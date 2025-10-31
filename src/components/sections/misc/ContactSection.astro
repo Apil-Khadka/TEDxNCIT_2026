@@ -1,26 +1,26 @@
 ---
 // Import the necessary dependencies.
-import AuthBtn from "@components/ui/buttons/AuthBtn.astro";
-import ContactIconBlock from "@components/ui/blocks/ContactIconBlock.astro";
-import TextInput from "@components/ui/forms/input/TextInput.astro";
-import EmailContactInput from "@components/ui/forms/input/EmailContactInput.astro";
-import PhoneInput from "@components/ui/forms/input/PhoneInput.astro";
-import TextAreaInput from "@components/ui/forms/input/TextAreaInput.astro";
-import FAQ from "@components/sections/misc/FAQ.astro";
-import faqs from "@data/faqs.json";
-import Icon from "@components/ui/icons/Icon.astro";
- 
+import AuthBtn from '@components/ui/buttons/AuthBtn.astro'
+import ContactIconBlock from '@components/ui/blocks/ContactIconBlock.astro'
+import TextInput from '@components/ui/forms/input/TextInput.astro'
+import EmailContactInput from '@components/ui/forms/input/EmailContactInput.astro'
+import PhoneInput from '@components/ui/forms/input/PhoneInput.astro'
+import TextAreaInput from '@components/ui/forms/input/TextAreaInput.astro'
+import FAQ from '@components/sections/misc/FAQ.astro'
+import faqs from '@data/faqs.json'
+import Icon from '@components/ui/icons/Icon.astro'
+
 // Define the variables that will be used in this component
-const title: string = "Contact us";
+const title: string = 'Contact us'
 const subTitle: string =
-  "Got questions or ideas? Reach out to TEDxNCIT—we’re eager to connect and collaborate with you!";
-const formTitle: string = "Fill in the form below";
-const formSubTitle: string = "We'll get back to you as soon as possible.";
+  'Got questions or ideas? Reach out to TEDxNCIT—we’re eager to connect and collaborate with you!'
+const formTitle: string = 'Fill in the form below'
+const formSubTitle: string = "We'll get back to you as soon as possible."
 ---
 
 <!-- Contact Us -->
 <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-  <div class="mx-auto py-20 max-w-2xl lg:max-w-5xl ">
+  <div class="mx-auto max-w-2xl py-20 lg:max-w-5xl">
     <div class="text-center">
       <h1
         class="text-balance text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight"
@@ -41,7 +41,8 @@ const formSubTitle: string = "We'll get back to you as soon as possible.";
         </h2>
         <!-- Form for user input with various input fields.-->
         <!-- Each field utilizes a different input component for the specific type of input (text, email, phone, and textarea)-->
-        <form>
+        <form action="">
+          <!-- TODO: Add form submission logic here -->
           <div class="grid gap-4">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <TextInput
@@ -64,7 +65,7 @@ const formSubTitle: string = "We'll get back to you as soon as possible.";
             />
           </div>
 
-          <div class="mt-4 grid ">
+          <div class="mt-4 grid">
             <AuthBtn title="Send Message" />
           </div>
 
@@ -83,10 +84,10 @@ const formSubTitle: string = "We'll get back to you as soon as possible.";
           content="Got a burning question ?"
           isLinkVisible={true}
           linkTitle="9862405060 / 9806763754"
-        ><Icon name="phone" />
-      </ContactIconBlock>
+          ><Icon name="phone" />
+        </ContactIconBlock>
 
-      <!-- <ContactIconBlock
+        <!-- <ContactIconBlock
         heading="FAQ"
         content="Explore our FAQ for quick, clear answers to common queries."
         isLinkVisible={true}
@@ -96,31 +97,30 @@ const formSubTitle: string = "We'll get back to you as soon as possible.";
         ><Icon name="chatBubble" />
     </ContactIconBlock> -->
 
-    <ContactIconBlock
-      heading="Visit Us"
-      content="Nepal College of Information Technology"
-      isAddressVisible={true}
-      addressContent="Balkumari, Lalitpur"
-      isLinkVisible={true}
-      linkTitle="See on Map"
-      linkURL="https://maps.app.goo.gl/q6i7LSjJNV3N9zZw9"
-      isArrowVisible={true}
-      ><Icon name="mapPin" />
-    </ContactIconBlock>
+        <ContactIconBlock
+          heading="Visit Us"
+          content="Nepal College of Information Technology"
+          isAddressVisible={true}
+          addressContent="Balkumari, Lalitpur"
+          isLinkVisible={true}
+          linkTitle="See on Map"
+          linkURL="https://maps.app.goo.gl/q6i7LSjJNV3N9zZw9"
+          isArrowVisible={true}
+          ><Icon name="mapPin" />
+        </ContactIconBlock>
 
-    <ContactIconBlock
-      heading="Contact us by email"
-      content="Prefer digital pigeons? Send us an email and we'll respond faster than you can say 'Reply All'! 📧"
-      isLinkVisible={true}
-      linkTitle="tedx@ncit.edu.np"
-      isArrowVisible={false}
-      linkURL="mailto:tedx@ncit.edu.np"
-      ><Icon name="envelopeOpen" />
-    </ContactIconBlock>
+        <ContactIconBlock
+          heading="Contact us by email"
+          content="Prefer digital pigeons? Send us an email and we'll respond faster than you can say 'Reply All'! 📧"
+          isLinkVisible={true}
+          linkTitle="tedx@ncit.edu.np"
+          isArrowVisible={false}
+          linkURL="mailto:tedx@ncit.edu.np"
+          ><Icon name="envelopeOpen" />
+        </ContactIconBlock>
       </div>
     </div>
   </div>
 
   <FAQ id="faq-section" title="Frequently<br />asked questions" faqs={faqs} />
-
 </section>

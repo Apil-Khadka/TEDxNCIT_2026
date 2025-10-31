@@ -1,53 +1,208 @@
 ---
-
-title: "The Future of Work in the Age of Automation"  
-description: "Explore how automation, AI, and technology are reshaping the workplace and the future of human labor."  
-cardImage: "@/images/insights/insight-3.png"  
-cardImageAlt: "Humans and robots working together in a modern office environment"
+title: '10+ Influential Nepalese TEDx Speakers & Their Signature Talks'
+description: 'A curated list of Nepal‑based speakers from TEDx events, the talks they have given, and what each talk teaches us about ideas worth spreading in a Nepali context.'
+cardImage: '@/images/insights/nepal_speakers.png'
+cardImageAlt: 'Collage of several Nepali TEDx speakers on stage'
 ---
 
-The workplace is undergoing a profound transformation as automation and artificial intelligence become central to our professional environments. Automation is not just a futuristic concept; it is already reshaping industries and the workforce on a global scale. Understanding the opportunities and challenges posed by automation is critical to preparing for the future of work.
+# 10+ Influential Nepalese TEDx Speakers & Their Signature Talks
 
-## The Automation Landscape
+Discover inspiring voices from Nepal who have shared their ideas on TEDx stages. These speakers represent the diverse talent, innovation, and wisdom emerging from the heart of the Himalayas.
 
-Automation is revolutionizing industries by taking over repetitive and routine tasks. From manufacturing to healthcare, AI-driven systems are increasing efficiency, reducing errors, and cutting costs. While automation enhances productivity, it also raises important questions about the future of jobs and the skills required for the workforce of tomorrow.
+---
 
-* **The Rise of AI and Robotics**  
-Robotic process automation (RPA) and AI-powered machines are already automating tasks such as data entry, scheduling, and even decision-making. Industries are rapidly adopting these technologies to streamline operations and reduce costs, but the shift comes with concerns about job displacement.
+## 1. Pushpa Basnet
 
-* **Sectors Most Impacted by Automation**  
-While all industries will experience some degree of automation, sectors like manufacturing, logistics, and retail are likely to see the most significant changes. TEDxNCIT will explore how these industries are preparing for the transition and what this means for the global workforce.
+### _"Bringing Children Out of Jails and Into Education"_ (2012)
 
-## Reskilling for the Future
+![Pushpa Basnet](https://www.goodnewsnetwork.org/wp-content/uploads/2012/12/Hero_CNN_2012-Pushpa_Basnet-Nepal.jpg)
 
-As automation takes over more tasks, the need for reskilling and upskilling is paramount. Workers must adapt to new roles that require critical thinking, creativity, and emotional intelligence—skills that machines cannot replicate.
+**About the Talk:** At TEDx Kathmandu in July 2012, Pushpa Basnet shared her mission to provide education and care for children of incarcerated parents through her organization, Early Childhood Development Center (ECDC).
 
-* **Lifelong Learning and Upskilling**  
-Continuous education is essential in a world where technology evolves rapidly. Governments, educational institutions, and companies must work together to provide reskilling programs that equip workers with the skills they need for the jobs of the future.
+**Key Insights:**
 
-* **Emerging Roles in Automation**  
-While some jobs will disappear, new roles will emerge that require advanced technical skills, such as AI management, data analysis, and cybersecurity. TEDxNCIT will spotlight examples of how industries are preparing workers for these future roles through training and education.
+- Children of incarcerated parents deserve education and care, not neglect
+- Grassroots social innovation can scale and gain global recognition
+- Compassion combined with action creates system-level change in challenging contexts
 
-## Human-Machine Collaboration
+**Impact:** CNN Hero 2012, her work has transformed hundreds of children's lives and inspired similar initiatives globally.
 
-Automation is not about replacing humans, but augmenting human capabilities. The future of work will see humans and machines collaborating, with AI assisting in decision-making and routine tasks, freeing up humans to focus on creativity and strategy.
+---
 
-* **Hybrid Workforces**  
-In the future, hybrid teams consisting of both humans and machines will become the norm. TEDxNCIT will highlight case studies where AI and humans work together seamlessly to improve productivity and innovation.
+## 2. Dawa Steven Sherpa
 
-* **AI as a Co-Pilot**  
-AI is increasingly being used to support human decision-making. Whether it's in medical diagnostics or financial forecasting, AI systems provide data-driven insights that help professionals make more informed choices.
+### _"Initiating Action – Everest Environmental Story"_ (2011)
 
-## Gig Economy and Remote Work
+![Dawa Steven Sherpa](https://i.ytimg.com/vi/z-WH3mVPsUI/maxresdefault.jpg)
 
-The rise of the gig economy and remote work has transformed traditional employment structures. These changes, accelerated by the pandemic, have led to a more flexible and decentralized workforce. Automation plays a key role in this shift, enabling remote teams to collaborate efficiently across time zones.
+**About the Talk:** A pioneering mountaineer and environmental advocate who uses his platform to address climate change and environmental protection in the Himalayas.
 
-* **Flexibility and Autonomy**  
-Automation allows remote workers to automate routine tasks, giving them more flexibility and control over their schedules. This trend is especially evident in freelance work, where individuals use automation tools to manage clients, deadlines, and workflows.
+**Key Insights:**
 
-* **Challenges in Remote Collaboration**  
-While remote work offers flexibility, it also presents challenges in maintaining team cohesion and communication. TEDxNCIT will explore how automation tools are being used to facilitate collaboration in a virtual workspace and keep teams connected.
+- Adventure and mountaineering can be leveraged for environmental leadership
+- High-profile local platforms bring global relevance to Himalayan issues
+- Sustainable tourism and climate action must go hand in hand
 
-## Conclusion
+**Impact:** Founded multiple environmental initiatives and continues to be a voice for Himalayan conservation.
 
-Automation and AI are fundamentally reshaping the workplace. By embracing these technologies, reskilling the workforce, and fostering human-machine collaboration, we can create a future where automation enhances human creativity, productivity, and job satisfaction. TEDxNCIT will be at the forefront of this discussion, inspiring dialogue on how we can prepare for this new era of work.
+---
+
+## 3. Dr. Minendra Rijal
+
+### _"Navigating Nepal's Geopolitics"_ (2025)
+
+![Dr. Minendra Rijal](https://i.ytimg.com/vi/jdOqzjcYge8/hq720.jpg?rs=AOn4CLCr-rDpJZRL0ae_yyKZYmkdundxDA&sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD)
+
+**About the Talk:** At TEDx Kathmandu University, Dr. Rijal explored Nepal's unique position between major powers and the opportunities this presents.
+
+**Key Insights:**
+
+- Nepal's location between major powers creates unique strategic opportunities and challenges
+- Good governance and diplomacy matter at both national and local levels
+- Local context insights can inform global geopolitical conversations
+
+**Impact:** Influential voice in Nepali politics and international relations.
+
+---
+
+## 4. Amit Agrawal
+
+### _"Digital Innovation in Nepal"_ (2024)
+
+![Amit Agrawal](https://tedxkathmanduuniversity.ku.edu.np/wp-content/uploads/2024/11/amit.png)
+
+**About the Talk:** Speaking at TEDx Kathmandu University under the theme "Navigating Narratives," Agrawal shared insights from building Khalti, Nepal's leading digital wallet.
+
+**Key Insights:**
+
+- Fintech solutions in Nepal demonstrate local innovation potential
+- Entrepreneurs can build for global scale while addressing local needs
+- The "why" behind a startup can be as compelling as the business itself
+
+**Impact:** Revolutionized digital payments in Nepal and inspired a new generation of fintech entrepreneurs.
+
+---
+
+## 5. Bhagawan Koirala
+
+### _"Healthcare Innovation in Nepal"_ (2024)
+
+![Bhagawan Koirala](https://images.squarespace-cdn.com/content/v1/5c838b3aab1a621eed7c5c41/acb5209d-5f21-4b69-9cc7-3e797cec3670/2.%2BHeadshot%2B-%2BKoirala.png)
+
+**About the Talk:** A medical professional sharing insights on bringing global healthcare learnings to local Nepali challenges.
+
+**Key Insights:**
+
+- Medical professionals in Nepal can bridge global knowledge with local challenges
+- Clinical expertise combined with social mission creates impactful storytelling
+- Local narratives enrich global discourse on healthcare and human dignity
+
+**Impact:** Advancing healthcare accessibility and quality in Nepal.
+
+---
+
+## 6. Ghana Shyam Gurung
+
+### _"Conservation from the Himalayas"_ (2024)
+
+![Ghana Shyam Gurung](https://nepalphd.org/uploads/GhanaShyam%20Gurung.jpeg)
+
+**About the Talk:** An environmental conservationist sharing perspectives from Nepal's unique ecological position.
+
+**Key Insights:**
+
+- Environmental conservation in Nepal has both local and international relevance
+- Nepali leaders in global organizations bring valuable credibility
+- Amplifying nature-based voices from the Himalayas influences global policy
+
+**Impact:** Advancing environmental conservation through international collaboration.
+
+---
+
+## 7. Ashok Kumar Byanju
+
+### _"Community-Led Development"_ (2024)
+
+![Ashok Kumar Byanju](https://i.ytimg.com/vi/0djooexymoM/maxresdefault.jpg)
+
+**About the Talk:** As Mayor of Dhulikhel, Byanju shared insights on local governance and community-driven development models.
+
+**Key Insights:**
+
+- Local governance offers insights into community-led development
+- Small municipalities can serve as models for sustainable development
+- Ideas worth spreading come from communities of all sizes
+
+**Impact:** Transforming Dhulikhel into a model sustainable city.
+
+---
+
+## 8. Shreeya Giri
+
+### _"Youth Mental Health Movement"_ (2024)
+
+![Shreeya Giri](https://imageio.forbes.com/specials-images/imageserve/6639787939e89859e47c1040/0x0.jpg?crop=1935%2C1935%2Cx397%2Cy248%2Csafe&fit=bounds&format=jpg&height=416&width=416)
+
+**About the Talk:** At TEDx Baneshwor, Giri spoke about youth-led mental health initiatives in Nepal.
+
+**Key Insights:**
+
+- Youth-led movements around mental health are emerging in Nepal
+- Local insights can inform global mental health frameworks
+- Empowering young voices transforms community resilience
+
+**Impact:** Pioneering mental health awareness among Nepali youth.
+
+---
+
+## 9. Sunil Babu Pant
+
+### _"LGBTQ+ Rights and Social Justice"_ (2024)
+
+![Sunil Babu Pant](https://annapurnaexpress.prixacdn.net/media/albums/sunil-babu-pant_XbSbTP0Fe9.jpg)
+
+**About the Talk:** A groundbreaking advocate sharing his journey and insights on LGBTQ+ rights in Nepal.
+
+**Key Insights:**
+
+- Social justice advocacy in Nepal brings important voices to global conversations
+- Sharing lived experiences strengthens empathy and drives policy change
+- Grassroots activism combined with platform visibility creates wider societal influence
+
+**Impact:** First openly gay politician in Nepal and a pioneer for LGBTQ+ rights in South Asia.
+
+---
+
+## 10. Seema Golchha
+
+### _"Art as Communication"_ (2022)
+
+![Seema Golchha](https://assets-cdn.kathmandupost.com/uploads/source/news/2019/entertainment/Seema-Golcha.jpg)
+
+**About the Talk:** A unique presentation combining ventriloquism and performance art at TEDx Durbar Marg.
+
+**Key Insights:**
+
+- Creative and unconventional art forms can embody "ideas worth spreading"
+- Culture, performance, and idea-sharing can mix in innovative ways
+- Local talent often brings novelty and breaks conventional presentation formats
+
+**Impact:** Pioneering creative expression in Nepal's TEDx community.
+
+---
+
+## 11. Mansi Agrawal
+
+### _"Wouldn't You Want to Learn from Nepal?"_
+
+![Mansi Agrawal](https://i.ytimg.com/vi/bbTiB6wnOg8/hq720.jpg?rs=AOn4CLBYw6Te1_iQpAZZoMKHIMVIJWeI0A&sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-DoACuAiKAgwIABABGGUgRyhBMA8%3D)
+
+**About the Talk:** Challenging external perceptions and highlighting what the world can learn from Nepal's unique perspectives.
+
+**Key Insights:**
+
+- External appreciation of Nepal can trigger valuable introspection
+- Cultural heritage and tourism dimensions offer rich ground for idea sharing
+- Fresh perspectives can challenge default narratives about Nepal
+
+**Impact:** Reshaping how Nepal is perceived on the global stage.

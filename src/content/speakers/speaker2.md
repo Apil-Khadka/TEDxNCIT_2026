@@ -1,70 +1,56 @@
 ---
-title: "Nischal Dhakal"
-description: "Coming Soon"
+title: 'Anuroop Tater'
+description: 'Coming Soon'
 main:
-  id: 2
+  id: 1
   content: |
-    Nischal Dhakal is a visionary in the field of technology and future trends. With a passion for exploring the digital landscape, Nischal has helped numerous organizations embrace the future through his insightful talks and workshops.
-  imgCard: "@/images/coming.png"
-  imgMain: "@/images/coming.png"
-  imgAlt: "Portrait of Nischal Dhakal"
+    Anuroop Tater is a creative technologist and researcher passionate about AI, machine learning, and cutting-edge innovations. He works on transforming complex ideas into practical solutions, helping organizations harness the power of emerging technologies.
+  imgCard: '@/images/coming.png'
+  imgMain: '@/images/coming.png'
+  imgAlt: 'Portrait of Anuroop Tater'
 tabs:
-  - id: "tabs-with-card-item-1"
-    dataTab: "#tabs-with-card-1"
-    title: "Bio"
-  - id: "tabs-with-card-item-2"
-    dataTab: "#tabs-with-card-2"
-    title: "Talks"
-  - id: "tabs-with-card-item-3"
-    dataTab: "#tabs-with-card-3"
-    title: "Publications"
+  - id: 'tabs-with-card-item-1'
+    dataTab: '#tabs-with-card-1'
+    title: 'Bio'
+  - id: 'tabs-with-card-item-2'
+    dataTab: '#tabs-with-card-2'
+    title: 'Projects'
+  - id: 'tabs-with-card-item-3'
+    dataTab: '#tabs-with-card-3'
+    title: 'Publications'
 longDescription:
-  title: "A Pioneer in Technology and Digital Transformation"
+  title: 'Pioneer in AI and Innovative Technologies'
   subTitle: |
-    Nischal Dhakal has been at the forefront of digital transformation, helping businesses adapt to the rapidly evolving tech landscape. His insights into the future of technology inspire others to innovate and stay ahead of the curve.
-  btnTitle: "Read Full Bio"
-  btnURL: "#"
+    Anuroop Tater explores the frontier of AI and machine learning, developing solutions that simplify complex processes and drive innovation. His work inspires others to explore technology creatively and apply it to real-world challenges.
+  btnTitle: 'Read Full Bio'
+  btnURL: '#'
 descriptionList:
-  - title: "Expert in Technology"
-    subTitle: "Guides businesses through digital transformation and innovation."
-  - title: "Futurist Speaker"
-    subTitle: "Provides insights on future trends and how to leverage technology for growth."
-  - title: "Tech Innovator"
-    subTitle: "Known for pioneering tech solutions that disrupt traditional markets."
+  - title: 'AI Researcher'
+    subTitle: 'Focuses on applied AI and machine learning solutions.'
+  - title: 'Innovator'
+    subTitle: 'Transforms complex ideas into practical, usable technologies.'
+  - title: 'Tech Visionary'
+    subTitle: 'Envisions the future of technology and its impact on industries.'
 specificationsLeft:
-  - title: "Background"
-    subTitle: "20 years of experience in tech innovation and digital strategy."
-  - title: "Education"
-    subTitle: "PhD in Computer Science from MIT."
-  - title: "Awards"
-    subTitle: "Tech Innovator of the Year 2023."
-  - title: "Speaking Engagements"
-    subTitle: "Over 200 speaking engagements worldwide, reaching over 100,000 people."
+  - title: 'Background'
+    subTitle: 'Experience in AI research, ML applications, and tech innovation.'
+  - title: 'Education'
+    subTitle: 'MSc in Artificial Intelligence from a top university.'
+  - title: 'Awards'
+    subTitle: 'Recipient of several innovation and AI research awards.'
+  - title: 'Speaking Engagements'
+    subTitle: 'Delivered talks and workshops at international AI conferences.'
 specificationsRight:
-  - title: "Industry Insights"
-    subTitle: "Provides actionable insights into emerging technologies and industry trends."
-  - title: "Innovation Strategies"
-    subTitle: "Expert in developing and implementing cutting-edge innovation strategies."
-  - title: "Tech Solutions"
-    subTitle: "Known for creating practical solutions that address complex technological challenges."
-  - title: "Future Trends"
-    subTitle: "Regularly forecasts future technology trends and their impact on various industries."
+  - title: 'Expertise'
+    subTitle: 'Specializes in AI, ML, data analysis, and innovative solutions.'
+  - title: 'Project Leadership'
+    subTitle: 'Leads projects applying AI and ML to solve real-world problems.'
+  - title: 'Problem Solving'
+    subTitle: 'Develops creative and efficient solutions for technical challenges.'
+  - title: 'Future Trends'
+    subTitle: 'Explores future technology trends and AI applications across industries.'
 publications:
-  first: "@/images/coming.png"
-  second: "@/images/coming.png"
-slug: speaker2
-
-
-# If table needed only then change this
-
-# tableData:
-#   - feature: ["Column 1", "Column 2"]
-#     description:
-#       - ["Row 1", "Row 2"]
-#       - ["Row 1", "Row 2"]
-#       - ["Row 1", "Row 2"]
-#       - ["Row 1", "Row 2"]
-#       - ["Row 1", "Row 2"]
-
+  first: '@/images/coming.png'
+  second: '@/images/coming.png'
+slug: anuroop-tater
 ---
-
