@@ -1,55 +1,125 @@
 ---
-// Importing necessary components
-import Meta from "@components/Meta.astro";
-import Navbar from "@components/sections/navbar&footer/Navbar.astro";
-import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
-import { SITE } from "@data/constants";
+import Meta from '@components/Meta.astro'
+import Navbar from '@components/sections/navbar&footer/Navbar.astro'
+import FooterSection from '@components/sections/navbar&footer/FooterSection.astro'
+import { SITE } from '@data/constants'
 
-// Setting expected props
-const { title = SITE.title, meta, structuredData, lang = "en" } = Astro.props;
-
-// Interface to type-check the properties
+const { title = SITE.title, meta, structuredData, lang = 'en' } = Astro.props
 interface Props {
-  title?: string;
-  meta?: string;
-  structuredData?: object;
-  lang?: string;
+  title?: string
+  meta?: string
+  structuredData?: object
+  lang?: string
 }
 ---
 
-<!--
-This is the main structure for the page.
-We set the language of the page to English and add classes for scrollbar and scroll behavior.
--->
 <html lang={lang} class="scrollbar-hide lenis lenis-smooth scroll-pt-16">
   <head>
-    <!-- Adding metadata to the HTML document -->
     <Meta meta={meta} structuredData={structuredData} />
-    <!-- Define the title of the page -->
     <title>{title}</title>
+
+    <!-- 🌙 Theme Handling -->
     <script is:inline>
-      // Script to handle dark mode. It will check if the theme is stored in localStorage or if dark theme is preferred by system settings
-      if (
-        localStorage.getItem("hs_theme") === "dark" ||
-        (!("hs_theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
+      const applyTheme = (theme) => {
+        const html = document.documentElement
+
+        // Toggle dark class based on theme
+        if (theme === 'dark') {
+          html.classList.add('dark')
+        } else {
+          html.classList.remove('dark')
+        }
+
+        // Save theme to localStorage
+        localStorage.setItem('hs_theme', theme)
       }
+
+      const stored = localStorage.getItem('hs_theme')
+      const prefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      ).matches
+      const theme = stored || (prefersDark ? 'dark' : 'light')
+      applyTheme(theme)
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const toggleButtons = document.querySelectorAll(
+          '[data-hs-theme-click-value]'
+        )
+
+        toggleButtons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const value = btn.getAttribute('data-hs-theme-click-value')
+            applyTheme(value)
+
+            const html = document.documentElement
+            void html.offsetHeight
+          })
+        })
+      })
     </script>
+
     <script>
-      import "@scripts/lenisSmoothScroll.js";
+      import '@scripts/lenisSmoothScroll.js'
     </script>
+
+    <style>
+      :root {
+        --accent: #e62b1e; /* TED Red */
+        --glow: rgba(230, 43, 30, 0.4);
+      }
+      html.dark {
+        --accent: #ff3b30;
+        --glow: rgba(255, 59, 48, 0.35);
+      }
+
+      @keyframes redBloom {
+        0% {
+          box-shadow: 0 0 0 0 var(--glow);
+        }
+        50% {
+          box-shadow: 0 0 100px 40px var(--glow);
+        }
+        100% {
+          box-shadow: 0 0 0 0 var(--glow);
+        }
+      }
+      .theme-bloom {
+        animation: redBloom 1.5s ease-in-out;
+      }
+
+      .theme-ripple {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: var(--accent);
+        opacity: 0.3;
+        transform: scale(0);
+        animation: rippleGrow 0.6s ease-out;
+        z-index: -1;
+      }
+
+      @keyframes rippleGrow {
+        to {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+
+      html {
+        transition:
+          background-color 0.5s ease,
+          color 0.5s ease;
+      }
+    </style>
   </head>
+
   <body
-    class="bg-neutral-200 selection:bg-yellow-400 selection:text-neutral-700 dark:bg-neutral-800"
+    class="relative bg-neutral-200 transition-colors duration-700 selection:bg-yellow-400 selection:text-neutral-700 dark:bg-neutral-900"
   >
-    <!--
-    Setting up the main structure of the page.
-    The Navbar is placed at the top, with a slot for the main content and FooterSection at the bottom.
-    -->
+    <div
+      class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,var(--accent)_0%,transparent_70%)] opacity-10 transition-opacity duration-700 dark:opacity-20"
+    ></div>
+
     <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
       <Navbar />
       <main>
@@ -57,16 +127,15 @@ We set the language of the page to English and add classes for scrollbar and scr
       </main>
     </div>
     <FooterSection />
+
     <style>
-      /* CSS rules for the page scrollbar */
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
       }
-
       .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
     </style>
-  </body>
-</html>
+  </body></html
+>
