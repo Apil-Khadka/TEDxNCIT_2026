@@ -42,25 +42,28 @@ Welcome to the official repository for the TEDxNCIT website, a fast, modern, and
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/dhunganaPradeep/TEDxNCIT.git
+   git clone https://github.com/Apil-Khadka/TEDxNCIT_2026.git
    ```
-   
 2. Navigate into the project directory:
+
    ```bash
    cd TEDxNCIT
    ```
 
 3. Install dependencies:
+
    ```bash
    npm install
    ```
 
 4. Start the development server:
+
    ```bash
    npm run dev
    ```
 
 5. Build for production:
+
    ```bash
    npm run build
    ```
@@ -74,21 +77,17 @@ Welcome to the official repository for the TEDxNCIT website, a fast, modern, and
 
 The website is optimized for SEO using Astro’s built-in SEO features. Proper meta tags, including `title`, `description`, and `social media sharing`, are added to each page for better visibility on search engines.
 
-
 ## Author
 
-- **Pradip Dhungana**  
-  - [Website](https://dhunganapradip.com.np)  
-  - [GitHub](https://github.com/pradipdhungana)
-
-
+- **Apil Khadka**
+  - [Website](https://apilkhadka.com.np)
+  - [GitHub](https://github.com/Apil-Khadka)
 
 ## Contributions
 
 Anyone organizing a TED event is welcome to use, modify, and build upon this template for their own event. Feel free to adapt it to suit your needs and deploy it for production. If you find this template useful and make improvements, contributions and feedback are always appreciated! 😃
 
 For any questions or contributions, you can reach out to :
-[dhungana.pradip188@gmail.com](mailto:dhungana.pradip188@gmail.com)
-
+[apilkhadka2020@gmail.com](mailto:apilkhadka2020@gmail.com)
 
 ---
