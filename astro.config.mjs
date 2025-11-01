@@ -4,35 +4,31 @@ import sitemap from "@astrojs/sitemap";
 import compressor from "astro-compressor";
 import react from "@astrojs/react";
 
-// https://astro.build/config
 export default defineConfig({
-  // https://docs.astro.build/en/guides/images/#authorizing-remote-images
-  site: "https://tedx.ncit.edu.np/",
+  site: "https://tedxncit2026.netlify.app",
   image: {
-    domains: ["images.unsplash.com"]
+    domains: ["images.unsplash.com", "upload.wikimedia.org"],
   },
-  // i18n: {
-  //   defaultLocale: "en",
-  //   locales: ["en", "fr"],
-  //   fallback: {
-  //     fr: "en",
-  //   },
-  //   routing: {
-  //     prefixDefaultLocale: false,
-  //   },
-  // },
   prefetch: true,
-  integrations: [tailwind(), sitemap({
-    i18n: {
-      defaultLocale: "en",
-    }
-  }),  compressor({
-    gzip: false,
-    brotli: true
-  }), react()],
+  integrations: [
+    tailwind({ applyBaseStyles: true }),
+    sitemap({
+      changefreq: "weekly",
+      priority: 0.8,
+      i18n: { defaultLocale: "en" },
+      serialize: (item) => ({ ...item, lastmod: new Date().toISOString() }),
+    }),
+    compressor({ gzip: true, brotli: true }),
+    react(),
+  ],
   output: "static",
-  experimental: {
-    clientPrerender: true,
-    directRenderScript: true
-  }
+  vite: {
+    build: {
+      cssMinify: true,
+      chunkSizeWarningLimit: 600,
+    },
+    server: {
+      fs: { strict: true },
+    },
+  },
 });

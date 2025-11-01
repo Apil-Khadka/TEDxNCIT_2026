@@ -11,22 +11,14 @@ interface Favicon {
 
 const sizes = [192, 512];
 const favicons: Favicon[] = [
-  {
-    purpose: 'any',
-    src: icon,
-    sizes,
-  },
-  {
-    purpose: 'maskable',
-    src: maskableIcon,
-    sizes,
-   },
+  { purpose: 'any', src: icon, sizes },
+  { purpose: 'maskable', src: maskableIcon, sizes },
 ];
 
 export const GET: APIRoute = async () => {
   const icons = await Promise.all(
-    favicons.flatMap((favicon) =>
-      favicon.sizes.map(async (size) => {
+    favicons.flatMap(favicon =>
+      favicon.sizes.map(async size => {
         const image = await getImage({
           src: favicon.src,
           width: size,
@@ -39,13 +31,14 @@ export const GET: APIRoute = async () => {
           type: `image/${image.options.format}`,
           purpose: favicon.purpose,
         };
-      }),
-    ),
+      })
+    )
   );
 
   const manifest = {
     short_name: "TEDxNCIT",
     name: "TEDxNCIT",
+    description: "Official TEDxNCIT 2026 website",
     icons,
     display: "minimal-ui",
     id: "/",
@@ -54,5 +47,7 @@ export const GET: APIRoute = async () => {
     background_color: "#262626",
   };
 
-  return new Response(JSON.stringify(manifest));
+  return new Response(JSON.stringify(manifest), {
+    headers: { "Content-Type": "application/manifest+json" },
+  });
 };
