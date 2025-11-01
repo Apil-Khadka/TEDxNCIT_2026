@@ -12,12 +12,7 @@ export default defineConfig({
   prefetch: true,
   integrations: [
     tailwind({ applyBaseStyles: true }),
-    sitemap({
-      changefreq: "weekly",
-      priority: 0.8,
-      i18n: { defaultLocale: "en" },
-      serialize: (item) => ({ ...item, lastmod: new Date().toISOString() }),
-    }),
+    sitemap(),
     compressor({ gzip: true, brotli: true }),
     react(),
   ],

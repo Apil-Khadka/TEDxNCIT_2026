@@ -1,10 +1,15 @@
 import type { APIRoute } from 'astro';
 
 const robotsTxt = `
+# Allow all search engines to crawl everything
 User-agent: *
 Allow: /
 
-Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}
+# Sitemap location
+Sitemap: ${new URL('/sitemap-index.xml', import.meta.env.SITE).href}
+
+# Optional crawl-delay for polite crawling (seconds)
+# Crawl-delay: 10
 `.trim();
 
 export const GET: APIRoute = () => {
