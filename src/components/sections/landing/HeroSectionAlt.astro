@@ -1,66 +1,144 @@
 ---
-import CountdownTimer from './CountdownTimer.tsx'; // Adjust the path if necessary
-
-// Define props
-const { eventDate, subTitle, title } = Astro.props;
+import CountdownTimer from './CountdownTimer.tsx';
+const { 
+  eventDate, 
+  subTitle, 
+  title = "Explore the Unexplored",
+  fontSize = "clamp(2.5rem, 6vw, 5rem)",
+  pulseTempo = "0.2s",
+} = Astro.props;
 ---
-<section class="relative mx-auto max-w-[85rem] px-4 pb-24 pt-10 sm:px-6 lg:px-8 text-center">
-  <div class="mx-auto mt-5 max-w-xl relative h-32">
-    <h2 class="borderEffect absolute inset-6 text-neutral-400 dark:text-neutral-600 text-4xl font-bold leading-tight tracking-tight">
-      {title}
-    </h2>
-    <h2 class="heroTitle absolute inset-6 text-4xl font-bold leading-tight tracking-tight">
-      {title}
-    </h2>
+
+<section class="relative mx-auto max-w-[95rem] px-4 pb-24 pt-10 sm:px-6 lg:px-8 text-center">
+  <div class="mx-auto mt-5 w-full relative flex justify-center items-center">
+    <div class="mysteryWrapper">
+      <h1 
+        class="mysteryText" 
+        id="animatedTitle"
+        style={`--font-size: ${fontSize}; --pulse-tempo: ${pulseTempo};`}
+      >
+        {title}
+      </h1>
+    </div>
   </div>
-  <div class="mx-auto mt-5 max-w-xl">
+  <div class="mx-auto mt-8 max-w-xl">
     <p class="text-lg text-neutral-600 dark:text-neutral-400">
-      {subTitle}
+      {subTitle ?? "Journey beyond boundaries. Seek what's unseen."}
     </p>
     <CountdownTimer eventDate={eventDate} client:idle />
   </div>
 </section>
 
 <style>
-/* Base styles for desktop */
-.heroTitle {
-  font-size: 7vmin;
+.mysteryWrapper {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  padding: 1rem 2rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.mysteryText {
+  display: inline-block;
+  font-size: var(--font-size);
+  font-weight: 800;
+  text-transform: uppercase;
   color: #eb0028;
-  animation: wave 3s ease-in-out infinite;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  position: relative;
   z-index: 2;
-  position: absolute;
+  white-space: normal;
 }
 
-.borderEffect {
-  font-size: 7vmin;
-  z-index: 1;
-  position: absolute;
-}
-
-@keyframes wave {
-  0%, 100% {
-    clip-path: polygon(0% 47%, 10% 48%, 33% 54%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
-  }
-
-  50% {
-    clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
-  }
-}
-
-/* Mobile view adjustments */
-@media (max-width: 768px) {
-  .heroTitle, .borderEffect {
-    font-size:  11vmin;
-  }
-
-  @keyframes wave {
-    0%, 100% {
-      clip-path: polygon(0% 32%, 10% 35%, 33% 42%, 54% 48%, 70% 54%, 84% 51%, 100% 45%, 100% 100%, 0% 100%);
-    }
-
-    50% {
-      clip-path: polygon(0% 22%, 15% 28%, 34% 35%, 51% 30%, 67% 20%, 84% 15%, 100% 20%, 100% 100%, 0% 100%);
-    }
-  }
+/* Individual character/word styling */
+.char, .word {
+  display: inline-block;
+  transform-origin: center;
 }
 </style>
+
+<script>
+  import Splitting from 'splitting';
+  import gsap from 'gsap';
+  import 'splitting/dist/splitting.css';
+
+  // Split text into characters
+  const result = Splitting({ target: '#animatedTitle', by: 'chars' });
+  const chars = result[0].chars;
+
+  // Create timeline for complex animations
+  const tl = gsap.timeline({ repeat: -1 });
+
+  // Pulse effect (like heartbeat)
+  gsap.to('#animatedTitle', {
+    scale: 1.001,
+    duration: 0.1,
+    repeat: -1,
+    yoyo: true,
+    repeatDelay: 0.7,
+    ease: 'power2.inOut',
+    filter: 'drop-shadow(0 0 25px rgba(135, 0, 40, 0.9))',
+  });
+
+  // Random character disappear/appear
+  function randomGlitch() {
+    const randomChars = gsap.utils.shuffle([...chars]).slice(0, Math.floor(Math.random() * 5) + 3);
+    
+    gsap.to(randomChars, {
+      opacity: 0,
+      y: gsap.utils.random(-20, 20),
+      rotation: gsap.utils.random(-15, 15),
+      duration: 0.1,
+      stagger: 0.02,
+      yoyo: true,
+      repeat: 1,
+    });
+  }
+
+  // Directional wipes
+  function directionalWipe(direction) {
+    const indexFunc = direction === 'left' ? (i) => i : (i) => chars.length - i;
+    
+    gsap.fromTo(chars, 
+      { clipPath: direction === 'left' ? 'inset(0 100% 0 0)' : 'inset(0 0 0 100%)' },
+      {
+        clipPath: 'inset(0 0 0 0)',
+        duration: 0.5,
+        stagger: {
+          each: 0.03,
+          from: direction === 'left' ? 'start' : 'end',
+        },
+        ease: 'power2.out',
+      }
+    );
+  }
+
+  // Wave effect
+  function waveEffect() {
+    gsap.to(chars, {
+      y: -20,
+      duration: 0.3,
+      stagger: {
+        each: 0.05,
+        repeat: 1,
+        yoyo: true,
+      },
+      ease: 'sine.inOut',
+    });
+  }
+
+  // Main animation sequence
+  setInterval(() => {
+    const animations = [
+      () => randomGlitch(),
+      () => directionalWipe('left'),
+      () => directionalWipe('right'),
+      () => waveEffect(),
+    ];
+    
+    const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+    randomAnim();
+  }, 3000);
+</script>
