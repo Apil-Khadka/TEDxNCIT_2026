@@ -59,14 +59,14 @@ const {
 }
 </style>
 
-<script>
+<script >
   import Splitting from 'splitting';
   import gsap from 'gsap';
   import 'splitting/dist/splitting.css';
 
   // Split text into characters
   const result = Splitting({ target: '#animatedTitle', by: 'chars' });
-  const chars = result[0].chars;
+  const chars: HTMLElement[] = result[0]?.chars ?? [];
 
   // Create timeline for complex animations
   const tl = gsap.timeline({ repeat: -1 });
@@ -83,8 +83,10 @@ const {
   });
 
   // Random character disappear/appear
-  function randomGlitch() {
-    const randomChars = gsap.utils.shuffle([...chars]).slice(0, Math.floor(Math.random() * 5) + 3);
+  function randomGlitch(): void {
+    const randomChars = gsap.utils
+      .shuffle([...chars])
+      .slice(0, Math.floor(Math.random() * 5) + 3);
     
     gsap.to(randomChars, {
       opacity: 0,
@@ -98,10 +100,13 @@ const {
   }
 
   // Directional wipes
-  function directionalWipe(direction) {
-    const indexFunc = direction === 'left' ? (i) => i : (i) => chars.length - i;
+  function directionalWipe(direction: 'left' | 'right'): void {
+    const indexFunc = direction === 'left' 
+      ? (i: number) => i 
+      : (i: number) => chars.length - i;
     
-    gsap.fromTo(chars, 
+    gsap.fromTo(
+      chars, 
       { clipPath: direction === 'left' ? 'inset(0 100% 0 0)' : 'inset(0 0 0 100%)' },
       {
         clipPath: 'inset(0 0 0 0)',
@@ -116,7 +121,7 @@ const {
   }
 
   // Wave effect
-  function waveEffect() {
+  function waveEffect(): void {
     gsap.to(chars, {
       y: -20,
       duration: 0.3,
@@ -131,11 +136,11 @@ const {
 
   // Main animation sequence
   setInterval(() => {
-    const animations = [
-      () => randomGlitch(),
+    const animations: (() => void)[] = [
+      randomGlitch,
       () => directionalWipe('left'),
       () => directionalWipe('right'),
-      () => waveEffect(),
+      waveEffect,
     ];
     
     const randomAnim = animations[Math.floor(Math.random() * animations.length)];
