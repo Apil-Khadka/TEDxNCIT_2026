@@ -6,6 +6,7 @@ import HeroSectionAlt from '@components/sections/landing/HeroSectionAlt.astro'
 import FeaturesGeneral from '@components/sections/features/FeaturesGeneral.astro'
 import FeaturesNavs from '@components/sections/features/FeaturesNavs.astro'
 import heroImage from '@images/hero-image.svg'
+import heroImageGif from '@images/hero-image.gif'
 import features from '@data/features.json'
 import Ticket from '@/components/sections/pricing/Ticket.astro'
 import tedImage from '@images/ted.png'
@@ -34,6 +35,7 @@ import { HOMEPAGE_SEO, OG, SITE } from '@data/constants'
     primaryBtn="Register Now"
     primaryBtnURL="/register"
     src={heroImage}
+    srcGif={heroImageGif}
     alt="TEDxNCIT event banner"
   />
   <HeroSectionAlt
@@ -41,7 +43,6 @@ import { HOMEPAGE_SEO, OG, SITE } from '@data/constants'
     subTitle="Join us at TEDxNCIT to discover inspiring talks and innovative ideas that can change the world."
     eventDate="2026-01-02T00:00:00Z"
   />
-
 
   <FeaturesGeneral
     title="Why Attend TEDxNCIT?"

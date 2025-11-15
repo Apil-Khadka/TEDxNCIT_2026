@@ -1,9 +1,9 @@
 ---
 // Import the necessary dependencies
-import { Image } from "astro:assets";
-import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
-import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
-import ReviewComponent from "@components/ui/blocks/ReviewComponent.astro";
+import { Image } from 'astro:assets'
+import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro'
+import SecondaryCTA from '@components/ui/buttons/SecondaryCTA.astro'
+import ReviewComponent from '@components/ui/blocks/ReviewComponent.astro'
 
 // Define props from Astro
 const {
@@ -19,24 +19,26 @@ const {
   rating,
   reviews,
   src,
-  alt
-} = Astro.props;
+  srcGif,
+  alt,
+} = Astro.props
 
 // Define TypeScript interface for props
 interface Props {
-  title: string;
-  subTitle?: string;
-  primaryBtn?: string;
-  primaryBtnURL?: string;
-  secondaryBtn?: string;
-  secondaryBtnURL?: string;
-  withReview?: boolean;
-  avatars?: Array<string>;
-  starCount?: number;
-  rating?: string;
-  reviews?: string;
-  src?: any;
-  alt?: string;
+  title: string
+  subTitle?: string
+  primaryBtn?: string
+  primaryBtnURL?: string
+  secondaryBtn?: string
+  secondaryBtnURL?: string
+  withReview?: boolean
+  avatars?: Array<string>
+  starCount?: number
+  rating?: string
+  reviews?: string
+  src?: any
+  srcGif?: any
+  alt?: string
 }
 ---
 
@@ -53,42 +55,81 @@ interface Props {
       <!-- About Fragment: https://docs.astro.build/en/basics/astro-syntax/#fragments -->
       <Fragment set:html={title} />
     </h1>
-    {subTitle &&
-    <p
-      class="mt-3 text-pretty text-lg leading-relaxed text-neutral-700 dark:text-neutral-400 lg:w-4/5"
-    >
-      {subTitle}
-    </p>
-  }
+    {
+      subTitle && (
+        <p class="mt-3 text-pretty text-lg leading-relaxed text-neutral-700 dark:text-neutral-400 lg:w-4/5">
+          {subTitle}
+        </p>
+      )
+    }
     <!-- Action Button Section: This section includes two CTAs with their own styles and URL -->
     <div class="mt-7 grid w-full gap-3 sm:inline-flex">
-      {primaryBtn && 
-      <PrimaryCTA title={primaryBtn} url={primaryBtnURL} />
-      }
-      {secondaryBtn && 
-      <SecondaryCTA title={secondaryBtn} url={secondaryBtnURL} />
+      {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} />}
+      {
+        secondaryBtn && (
+          <SecondaryCTA title={secondaryBtn} url={secondaryBtnURL} />
+        )
       }
     </div>
 
     <!-- Review Section: This section presents avatars, review ratings and the number of reviews -->
-    { withReview ? (
-    <ReviewComponent avatars={avatars} starCount={starCount} rating={rating} reviews={reviews} />
-    ) : "" }
-
+    {
+      withReview ? (
+        <ReviewComponent
+          avatars={avatars}
+          starCount={starCount}
+          rating={rating}
+          reviews={reviews}
+        />
+      ) : (
+        ''
+      )
+    }
   </div>
   <!-- Hero Image Section -->
   <div class="flex w-full">
-      <div class="top-12 overflow-hidden">
-	{src && alt &&
-	<Image
+    <div
+      class="relative top-12 flex h-[400px] w-full items-center justify-center overflow-hidden"
+    >
+      <Image
+        id="hero-gif"
+        src={srcGif}
+        alt={'GIF animation'}
+        class="absolute h-full w-full object-contain opacity-100 transition-opacity duration-500"
+        draggable="false"
+        loading="eager"
+        format="gif"
+      />
+
+      <Image
+        id="hero-logo"
         src={src}
-        alt={alt}
-        class="h-full w-full scale-110 object-cover object-center"
-        draggable={"false"}
-        loading={"eager"}
-        format={"svg"}
-	 />
-	}
+        alt={'hero' + alt}
+        class="absolute h-full w-full scale-90 object-contain opacity-0 transition-all duration-700"
+        draggable="false"
+        loading="eager"
+        format="png"
+      />
     </div>
   </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const gif = document.getElementById('hero-gif')
+      const logo = document.getElementById('hero-logo')
+
+      const GIF_DURATION = 3600
+
+      setTimeout(() => {
+        gif.style.opacity = '0'
+
+        setTimeout(() => {
+          logo.style.opacity = '1'
+
+          logo.classList.remove('scale-90')
+          logo.classList.add('scale-100')
+        }, 120)
+      }, GIF_DURATION)
+    })
+  </script>
 </section>
