@@ -119,6 +119,7 @@ interface Props {
       const logo = document.getElementById('hero-logo')
 
       const GIF_DURATION = 3600
+      if (!gif || !logo) return
 
       setTimeout(() => {
         gif.style.opacity = '0'
