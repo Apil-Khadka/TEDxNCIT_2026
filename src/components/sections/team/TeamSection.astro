@@ -77,8 +77,8 @@ const socialIconMap: Record<string, string> = {
 
               <!-- Optional overlay text or icon -->
               <div
-                class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100
-                      transition-opacity duration-700 translate-y-16 ease-in-out space-y-1"
+                class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100  group-hover:translate-y-16
+                      transition-opacity duration-700  ease-in-out space-y-3"
               >
                 <p class="text-red-500 text-lg font-semibold tracking-wide drop-shadow-md">
                   {member.name}
@@ -87,13 +87,12 @@ const socialIconMap: Record<string, string> = {
                   {member.role}
                 </p>
               </div>
-
-           </div>
+          </div>
           </div>
           <h3 class="mt-4 text-lg font-bold text-neutral-900 dark:text-neutral-100">
             {member.name}
           </h3>
-          <p class="text-sm text-neutral-600">{member.role}</p>
+          <p class="text-sm text-neutral-600 dark:text-neutral-100">{member.role}</p>
 
           <div class="mt-2 flex justify-center space-x-3">
             {Object.entries(member.socials).map(
