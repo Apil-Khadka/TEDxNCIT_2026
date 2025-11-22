@@ -1,7 +1,7 @@
 ---
 title: 'The Era of Cognitive Liberty: Reclaiming Minds in the Intelligent Age'
 description: 'How emerging neuro‑technologies and AI are redefining cognition, privacy and what it means to be human — and what we can do to preserve our inner freedom.'
-cardImage: '@/images/insights/cognitive_liberty.png'
+cardImage: '@/images/insights/cognitive_liberty.webp'
 cardImageAlt: 'Abstract representation of brain unlocking mind.'
 ---
 

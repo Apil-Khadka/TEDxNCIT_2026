@@ -1,7 +1,7 @@
 ---
 title: '15 Influential TED Speakers & Their Signature Talks'
 description: 'A curated list of fifteen highly‑viewed TED talks, the speakers behind them, and what each talk teaches us about ideas worth spreading.'
-cardImage: '@/images/insights/global_speakers.png'
+cardImage: '@/images/insights/global_speakers.webp'
 cardImageAlt: 'Abstract representation of global TED speakers.'
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 'Digital Wellness and Mindful Technology Use'
 description: 'Exploring how individuals can maintain mental health, focus, and balance in a hyper-connected digital world.'
-cardImage: '@/images/insights/wellbeing_digital.png'
+cardImage: '@/images/insights/wellbeing_digital.webp'
 cardImageAlt: 'Person meditating in a clear spring.'
 ---
 

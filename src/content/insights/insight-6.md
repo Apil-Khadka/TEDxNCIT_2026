@@ -1,7 +1,7 @@
 ---
 title: 'Voices Unheard: Amplifying Marginalised Narratives in the Digital Era'
 description: 'How digital platforms, storytelling innovations and community‑driven networks are giving voice to those traditionally marginalised — and why that matters for a more just, connected world.'
-cardImage: '@/images/insights/amplify_voice.png'
+cardImage: '@/images/insights/amplify_voice.webp'
 cardImageAlt: 'Abstract representation of diverse voices emerging from a digital network.'
 ---
 

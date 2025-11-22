@@ -1,7 +1,7 @@
 ---
 title: 'The Future of Work and AI Collaboration'
 description: 'Exploring how artificial intelligence is reshaping the workplace, redefining skills, and fostering collaboration between humans and machines.'
-cardImage: '@/images/insights/human_ai_collab.jpg'
+cardImage: '@/images/insights/human_ai_collab.webp'
 cardImageAlt: 'Fingers of a human and robot touching showing collaboration.'
 ---
 

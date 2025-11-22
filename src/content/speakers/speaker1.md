@@ -5,8 +5,8 @@ main:
   id: 1
   content: |
     Apil Khadka is a technology enthusiast and software developer with a deep interest in scalable systems, web development, and emerging tech trends. He has contributed to multiple projects, helping organizations and individuals embrace modern technologies.
-  imgCard: '@/images/coming.png'
-  imgMain: '@/images/coming.png'
+  imgCard: '@/images/coming.webp'
+  imgMain: '@/images/coming.webp'
   imgAlt: 'Portrait of Apil Khadka'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -50,7 +50,7 @@ specificationsRight:
   - title: 'Future Vision'
     subTitle: 'Regularly explores emerging tech trends and their impact on software development.'
 publications:
-  first: '@/images/coming.png'
-  second: '@/images/coming.png'
+  first: '@/images/coming.webp'
+  second: '@/images/coming.webp'
 slug: apil-khadka
 ---

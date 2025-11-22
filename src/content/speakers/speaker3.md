@@ -5,8 +5,8 @@ main:
   id: 1
   content: |
     Aaditya Yadav is a passionate software engineer and tech innovator with a focus on web development, cloud computing, and scalable system design. He strives to build solutions that make technology accessible and efficient for everyone.
-  imgCard: '@/images/coming.png'
-  imgMain: '@/images/coming.png'
+  imgCard: '@/images/coming.webp'
+  imgMain: '@/images/coming.webp'
   imgAlt: 'Portrait of Aaditya Yadav'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -50,7 +50,7 @@ specificationsRight:
   - title: 'Future Vision'
     subTitle: 'Focuses on emerging technologies and their impact on software development.'
 publications:
-  first: '@/images/coming.png'
-  second: '@/images/coming.png'
+  first: '@/images/coming.webp'
+  second: '@/images/coming.webp'
 slug: aaditya-yadav
 ---

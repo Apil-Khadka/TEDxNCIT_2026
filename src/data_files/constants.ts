@@ -8,7 +8,7 @@ export const SITE = {
   description_short:
     'TEDxNCIT, hosted by Nepal College of Information Technology (NCIT), is an independently organized TED event. It features short, powerful talks under a license from TED. ',
   url: 'https://tedx.ncit.edu.np/',
-  author: 'Pradip Dhungana',
+  author: 'Apil Khadka',
 }
 
 export const SEO = {

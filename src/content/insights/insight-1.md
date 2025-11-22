@@ -1,7 +1,7 @@
 ---
 title: 'TED and TEDx: From Global Ideas to Local Communities'
 description: 'Tracing the journey of TED from a niche conference to a global platform, and how TEDx empowered communities worldwide to share ideas worth spreading.'
-cardImage: '@/images/insights/ted_tedx.png'
+cardImage: '@/images/insights/ted_tedx.webp'
 cardImageAlt: 'Abstract representation of global connectivity and idea sharing'
 ---
 

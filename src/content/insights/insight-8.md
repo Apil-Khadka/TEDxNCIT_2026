@@ -1,7 +1,7 @@
 ---
 title: 'Sustainable Living in the Age of Climate Awareness'
 description: 'Exploring how individuals and communities can adopt sustainable practices to combat climate change and promote environmental stewardship.'
-cardImage: '@/images/insights/sust_living.png'
+cardImage: '@/images/insights/sust_living.webp'
 cardImageAlt: 'A family planting a garden full of vegetables.'
 ---
 

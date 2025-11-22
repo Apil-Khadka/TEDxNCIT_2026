@@ -5,8 +5,8 @@ main:
   id: 1
   content: |
     Anuroop Tater is a creative technologist and researcher passionate about AI, machine learning, and cutting-edge innovations. He works on transforming complex ideas into practical solutions, helping organizations harness the power of emerging technologies.
-  imgCard: '@/images/coming.png'
-  imgMain: '@/images/coming.png'
+  imgCard: '@/images/coming.webp'
+  imgMain: '@/images/coming.webp'
   imgAlt: 'Portrait of Anuroop Tater'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -50,7 +50,7 @@ specificationsRight:
   - title: 'Future Trends'
     subTitle: 'Explores future technology trends and AI applications across industries.'
 publications:
-  first: '@/images/coming.png'
-  second: '@/images/coming.png'
+  first: '@/images/coming.webp'
+  second: '@/images/coming.webp'
 slug: anuroop-tater
 ---

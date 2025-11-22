@@ -5,8 +5,8 @@ main:
   id: 2
   content: |
     Niraj Bhatta is a world-renowned researcher and data scientist celebrated for his groundbreaking work in applying artificial intelligence and biomedical data analytics to improve human health. His pioneering research has led to the development of data-driven solutions that have significantly advanced treatments for individuals with physical disabilities.
-  imgCard: '@/images/coming.png'
-  imgMain: '@/images/coming.png'
+  imgCard: '@/images/coming.webp'
+  imgMain: '@/images/coming.webp'
   imgAlt: 'Portrait of Niraj Bhatta'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -50,7 +50,7 @@ specificationsRight:
   - title: 'Future Vision'
     subTitle: 'Aims to integrate neuroscience and AI to unlock new dimensions of human capability.'
 publications:
-  first: '@/images/coming.png'
-  second: '@/images/coming.png'
+  first: '@/images/coming.webp'
+  second: '@/images/coming.webp'
 slug: niraj-bhatta
 ---

@@ -1,7 +1,7 @@
 ---
 title: '10+ Influential Nepalese TEDx Speakers & Their Signature Talks'
 description: 'A curated list of Nepal‑based speakers from TEDx events, the talks they have given, and what each talk teaches us about ideas worth spreading in a Nepali context.'
-cardImage: '@/images/insights/nepal_speakers.png'
+cardImage: '@/images/insights/nepal_speakers.webp'
 cardImageAlt: 'Collage of several Nepali TEDx speakers on stage'
 ---
 

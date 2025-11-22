@@ -24,6 +24,7 @@ const { title, description, members }: Props = Astro.props;
 
 const cloudName = "dglsdyi9e";
 const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto/`;
+const imageExtension = "webp";
 
 // Map for the social platform and its corresponding icon name
 const socialIconMap: Record<string, string> = {
@@ -58,9 +59,9 @@ const socialIconMap: Record<string, string> = {
 
                     src={`${baseUrl}${member.img}`}
                     srcset={`
-                      ${baseUrl}w_400,c_fill/${member.img} 400w,
-                      ${baseUrl}w_800,c_fill/${member.img} 800w,
-                      ${baseUrl}w_1200,c_fill/${member.img} 1200w
+                      ${baseUrl}w_400,c_fill/${member.img}.${imageExtension} 400w,
+                      ${baseUrl}w_800,c_fill/${member.img}.${imageExtension} 800w,
+                      ${baseUrl}w_1200,c_fill/${member.img}.${imageExtension} 1200w
                     `}
                     sizes="(max-width: 600px) 400px, (max-width: 900px) 800px, 1200px"
                     style="clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);"

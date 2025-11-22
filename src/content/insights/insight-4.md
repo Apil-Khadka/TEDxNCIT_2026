@@ -1,7 +1,7 @@
 ---
 title: 'Unlocking Creativity in the Algorithmic Age'
 description: 'How creativity is emerging as the most valuable skill in a world dominated by algorithms, automation and AI‑driven systems.'
-cardImage: '@/images/insights/creativity_ai_age.png'
+cardImage: '@/images/insights/creativity_ai_age.webp'
 cardImageAlt: 'Abstract illustration of a brain and a key'
 ---
 
