@@ -1,69 +1,71 @@
 ---
 // Import necessary components
-import MainLayout from "@/layouts/MainLayout.astro";
-import MainSection from "@components/ui/blocks/MainSection.astro";
-import LeftSection from "@components/ui/blocks/LeftSection.astro";
-import RightSection from "@components/ui/blocks/RightSection.astro";
+import MainLayout from '@/layouts/MainLayout.astro'
+import MainSection from '@components/ui/blocks/MainSection.astro'
+import LeftSection from '@components/ui/blocks/LeftSection.astro'
+import RightSection from '@components/ui/blocks/RightSection.astro'
 
 // Import necessary images
-import ncitlogo from "@images/sponsors/ncit.svg";
-import comingSoon from "@images/coming.png";
-import { SITE } from "@data/constants";
+import ncitlogo from '@images/sponsors/ncit.svg'
+import comingSoon from '@images/coming.webp'
+import { SITE } from '@data/constants'
 
 interface Sponsor {
-  isRightSection: boolean;
-  title: string; 
-  subTitle: string;
-  btnExists?: boolean;
-  btnTitle?: string;
-  btnURL?: string;
-  img?: any;
-  imgAlt?: string;
+  isRightSection: boolean
+  title: string
+  subTitle: string
+  btnExists?: boolean
+  btnTitle?: string
+  btnURL?: string
+  img?: any
+  imgAlt?: string
 }
 
 const sponsors: Sponsor[] = [
   {
     isRightSection: true,
-    title: "Education Partner",
-    subTitle: "Nepal College of Information Technology - NCIT, established in 2001, runs Pokhara University-affiliated Bachelor's and Master's programs - BE, BBA, BCA,ME, MSc & MCIS. Our Engineering Degrees are approved by the Nepal Engineering Council.",
+    title: 'Education Partner',
+    subTitle:
+      "Nepal College of Information Technology - NCIT, established in 2001, runs Pokhara University-affiliated Bachelor's and Master's programs - BE, BBA, BCA,ME, MSc & MCIS. Our Engineering Degrees are approved by the Nepal Engineering Council.",
     btnExists: true,
-    btnTitle: "Learn More",
-    btnURL: "https://ncit.edu.np/",
+    btnTitle: 'Learn More',
+    btnURL: 'https://ncit.edu.np/',
     img: ncitlogo,
-    imgAlt: "Blueprints and digital tablet with construction plans.",
+    imgAlt: 'Blueprints and digital tablet with construction plans.',
   },
   {
     isRightSection: false,
-    title: "Gold Sponsor",
-    subTitle: "Coming Soon",
+    title: 'Gold Sponsor',
+    subTitle: 'Coming Soon',
     btnExists: true,
-    btnTitle: "Learn More",
-    btnURL: "#",
+    btnTitle: 'Learn More',
+    btnURL: '#',
     img: comingSoon,
-    imgAlt: "Person working in the office.",
+    imgAlt: 'Person working in the office.',
   },
-  
-];
+]
 
-const pageTitle: string = `Sponsors | ${SITE.title}`;
+const pageTitle: string = `Sponsors | ${SITE.title}`
 ---
 
 <MainLayout
   title={pageTitle}
   structuredData={{
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://tedx.ncit.edu.np/sponsors",
-    "url": "https://tedx.ncit.edu.np/sponsors",
-    "name": "Sponsors | TEDxNCIT",
-    "description": "Meet our esteemed sponsors who are supporting the TEDxNCIT event. Learn more about their contributions and how they are helping us make this event a success.",
-    "isPartOf": {
-        "@type": "WebSite",
-        "url": "https://tedx.ncit.edu.np",
-        "name": "TEDxNCIT",
-        "description": "TEDxNCIT is an independently organized TED event celebrating ideas worth spreading."
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://tedx.ncit.edu.np/sponsors',
+    url: 'https://tedx.ncit.edu.np/sponsors',
+    name: 'Sponsors | TEDxNCIT',
+    description:
+      'Meet our esteemed sponsors who are supporting the TEDxNCIT event. Learn more about their contributions and how they are helping us make this event a success.',
+    isPartOf: {
+      '@type': 'WebSite',
+      url: 'https://tedx.ncit.edu.np',
+      name: 'TEDxNCIT',
+      description:
+        'TEDxNCIT is an independently organized TED event celebrating ideas worth spreading.',
     },
-    "inLanguage": "en-US"
+    inLanguage: 'en-US',
   }}
 >
   <!--MainSection is the introductory section of the page, it also contains a CTA button-->
@@ -81,7 +83,7 @@ const pageTitle: string = `Sponsors | ${SITE.title}`;
   If 'single' is true, it displays one image, otherwise it displays two.
   -->
   {
-    sponsors.map(sponsor => {
+    sponsors.map((sponsor) => {
       return sponsor.isRightSection ? (
         <RightSection
           title={sponsor.title}
@@ -102,8 +104,7 @@ const pageTitle: string = `Sponsors | ${SITE.title}`;
           btnTitle={sponsor.btnTitle}
           btnURL={sponsor.btnURL}
         />
-      );
+      )
     })
   }
-
 </MainLayout>
