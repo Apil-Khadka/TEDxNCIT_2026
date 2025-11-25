@@ -1,13 +1,14 @@
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import sitemap from "@astrojs/sitemap";
-import compressor from "astro-compressor";
-import react from "@astrojs/react";
+import { defineConfig } from 'astro/config'
+import tailwind from '@astrojs/tailwind'
+import sitemap from '@astrojs/sitemap'
+import compressor from 'astro-compressor'
+import react from '@astrojs/react'
 
 export default defineConfig({
-  site: "https://tedxncit2026.netlify.app",
+  site: 'https://ted.apilkhadka.com.np/',
+  prefetch: false,
   image: {
-    domains: ["images.unsplash.com", "upload.wikimedia.org"],
+    domains: ['images.unsplash.com', 'upload.wikimedia.org'],
   },
   prefetch: true,
   integrations: [
@@ -16,7 +17,7 @@ export default defineConfig({
     compressor({ gzip: true, brotli: true }),
     react(),
   ],
-  output: "static",
+  output: 'static',
   vite: {
     build: {
       cssMinify: true,
@@ -26,4 +27,4 @@ export default defineConfig({
       fs: { strict: true },
     },
   },
-});
+})
