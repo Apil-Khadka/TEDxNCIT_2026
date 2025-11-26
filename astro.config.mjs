@@ -5,7 +5,7 @@ import compressor from 'astro-compressor'
 import react from '@astrojs/react'
 
 export default defineConfig({
-  site: 'https://ted.apilkhadka.com.np/',
+  site: 'https://tedx.ncit.edu.np/',
   prefetch: false,
   image: {
     domains: ['images.unsplash.com', 'upload.wikimedia.org'],
