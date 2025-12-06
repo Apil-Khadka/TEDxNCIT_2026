@@ -1,0 +1,54 @@
+---
+interface SponsorCardProps {
+  sponsor: {
+    id: string;
+    name: string;
+    type: string;
+    description: string;
+    longDescription: string;
+    url: string;
+    img: { src: string };
+  };
+  tier?: 'gold' | 'silver' | 'bronze' | 'default';
+  size?: 'large' | 'medium' | 'small'; // Optional size for layout variations
+}
+
+const { sponsor, tier = 'default', size = 'medium' } = Astro.props;
+
+// CSS classes based on tier and size
+const tiers = {
+  gold: { border: 'border-yellow-400', glow: 'bg-yellow-100 dark:bg-yellow-900/30', blob: 'w-80 h-80' },
+  silver: { border: 'border-slate-300 dark:border-slate-600', glow: 'bg-indigo-100 dark:bg-indigo-900/30', blob: 'w-60 h-60' },
+  bronze: { border: 'border-orange-300 dark:border-orange-800', glow: 'bg-orange-100 dark:bg-orange-900/30', blob: 'w-40 h-40' },
+  default: { border: 'border-transparent', glow: 'bg-gray-100', blob: 'w-32 h-32' },
+};
+
+const currentTier = tiers[tier];
+---
+
+<div class="swiper-slide h-auto py-4 px-2">
+  <button
+    onclick={`openModal('${sponsor.id}')`}
+    class={`relative overflow-hidden h-full w-full bg-white dark:bg-neutral-800 rounded-xl p-6 ${currentTier.border} shadow-md hover:shadow-lg hover:-translate-y-1 transition-all text-center group flex flex-col`}
+  >
+    <div class={`absolute top-0 right-0 -mt-20 -mr-20 ${currentTier.blob} ${currentTier.glow} rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity`}></div>
+
+    <div class="h-24 flex items-center justify-center mb-4 bg-gray-50 dark:bg-neutral-900/50 rounded-lg relative z-10">
+      <img src={sponsor.img.src} alt={sponsor.name} class="max-h-16 max-w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
+    </div>
+    <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1 relative z-10">{sponsor.name}</h3>
+    <p class="text-xs text-orange-600 dark:text-orange-400 uppercase tracking-wider relative z-10">{sponsor.type}</p>
+
+    <div
+      id={`data-${sponsor.id}`}
+      class="hidden"
+      data-tier={tier}
+      data-name={sponsor.name}
+      data-desc={sponsor.description}
+      data-long-desc={sponsor.longDescription}
+      data-img={sponsor.img.src}
+      data-url={sponsor.url}
+      data-type={sponsor.type}
+    ></div>
+  </button>
+</div>

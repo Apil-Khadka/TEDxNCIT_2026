@@ -1,0 +1,269 @@
+---
+import SponsorModal from "@components/ui/cards/SponserModal.astro";
+
+// --- 1. Import Swiper Styles (Crucial for npm usage) ---
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+// --- Types ---
+interface Sponsor {
+  id: string;
+  name: string;
+  type: string;
+  description: string;
+  longDescription: string;
+  url: string;
+  img: any;
+}
+
+interface Props {
+  title: string;
+  tier: "gold" | "silver" | "bronze" | "community";
+  sponsors: Sponsor[];
+}
+
+const { title, tier, sponsors } = Astro.props;
+
+// --- Unique Identifiers ---
+// This ensures that if you have Gold, Silver, and Bronze on the same page, 
+// the buttons don't conflict with each other.
+const uid = `${tier}-tier`;
+const swiperClass = `${uid}-swiper`;
+const prevClass = `${uid}-prev`;
+const nextClass = `${uid}-next`;
+
+// --- Configuration Logic ---
+const isCommunity = tier === "community";
+const isGold = tier === "gold";
+
+// How many slides to show per view on Desktop (lg)
+const desktopSlides = tier === "gold" ? 1 : tier === "silver" ? 2 : 3;
+
+// --- Theme Map ---
+const tierStyles = {
+  gold: {
+    border: "border-yellow-400",
+    shadow: "hover:shadow-[0_20px_50px_rgba(234,179,8,0.3)]",
+    glow: "bg-yellow-100 dark:bg-yellow-900/30",
+    badge: "bg-yellow-100 text-yellow-800",
+    text: "text-gray-900 dark:text-white",
+    icon: "✦",
+    iconColor: "text-yellow-500"
+  },
+  silver: {
+    border: "border-slate-300 dark:border-slate-600",
+    shadow: "hover:shadow-[0_20px_50px_rgba(148,163,184,0.3)]",
+    glow: "bg-slate-100 dark:bg-slate-800/50",
+    badge: "bg-slate-100 text-slate-700",
+    text: "text-slate-800 dark:text-slate-200",
+    icon: "◆",
+    iconColor: "text-slate-400"
+  },
+  bronze: {
+    border: "border-orange-300 dark:border-orange-700",
+    shadow: "hover:shadow-[0_20px_50px_rgba(251,146,60,0.3)]",
+    glow: "bg-orange-50 dark:bg-orange-900/30",
+    badge: "bg-orange-100 text-orange-800",
+    text: "text-orange-900 dark:text-orange-100",
+    icon: "●",
+    iconColor: "text-orange-500"
+  },
+  community: {
+     icon: "♥",
+     iconColor: "text-red-500"
+  }
+};
+
+const style = tierStyles[tier];
+---
+
+<section class="relative py-12">
+  {/* Header */}
+  <h2 class="text-4xl font-bold text-gray-800 dark:text-neutral-200 mb-12 flex items-center justify-center gap-3 relative z-10">
+    <span class={`text-5xl ${style.iconColor}`}>{style.icon}</span> 
+    {title}
+  </h2>
+
+  {/* --- COMMUNITY TIER (Simple Grid) --- */}
+  {isCommunity ? (
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4">
+      {sponsors.map((s) => (
+        <>
+          <button 
+            onclick={`window.openModal('${s.id}')`}
+            class="group p-4 bg-white dark:bg-neutral-800 rounded-xl border border-gray-200 dark:border-neutral-700 hover:border-red-300 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="h-16 mx-auto flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
+                <img src={s.img.src} alt={s.name} class="max-h-full object-contain" />
+            </div>
+            <p class="text-xs mt-3 font-semibold text-gray-600 dark:text-gray-400 group-hover:text-red-500 transition-colors">{s.name}</p>
+          </button>
+          <SponsorModal sponsor={s} />
+        </>
+      ))}
+    </div>
+  ) : (
+  
+  /* --- GOLD / SILVER / BRONZE TIERS (Swiper) --- */
+    <div class={`swiper ${swiperClass} w-full px-4 md:px-12 pb-12 relative z-10`}>
+      <div class="swiper-wrapper">
+        {sponsors.map((s) => (
+          <div class="swiper-slide h-auto flex justify-center pb-10 pt-4 px-2">
+            <button 
+              onclick={`window.openModal('${s.id}')`}
+              class={`relative w-full bg-white dark:bg-neutral-800 rounded-3xl border-[4px] shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer group overflow-hidden ${style.border} ${style.shadow} ${isGold ? 'max-w-5xl' : 'max-w-md h-full flex flex-col'}`}
+            >
+              
+              {/* Decorative Glow Blob */}
+              <div class={`absolute top-0 right-0 -mt-20 -mr-20 w-60 h-60 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none ${style.glow}`}></div>
+
+              {/* --- CARD CONTENT --- */}
+              <div class={`flex relative z-10 ${isGold ? 'flex-col md:flex-row h-full' : 'flex-col h-full'}`}>
+                  
+                  {/* Image Area */}
+                  <div class={`flex items-center justify-center p-8 bg-gray-50 dark:bg-neutral-900/50 ${isGold ? 'w-full md:w-5/12 h-64 md:h-auto' : 'w-full h-48 border-b dark:border-neutral-700'}`}>
+                      <img 
+                        src={s.img.src} 
+                        alt={s.name} 
+                        class={`max-h-full max-w-full object-contain transform group-hover:scale-110 transition-transform duration-500 ${!isGold ? 'grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100' : ''}`} 
+                      />
+                  </div>
+
+                  {/* Text Area */}
+                  <div class={`flex flex-col justify-center text-left ${isGold ? 'w-full md:w-7/12 p-8 md:p-12' : 'w-full p-6 flex-grow'}`}>
+                      
+                      <div class="mb-4">
+                        <span class={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${style.badge}`}>
+                            {s.type}
+                        </span>
+                      </div>
+
+                      <h3 class={`font-bold mb-3 line-clamp-1 ${isGold ? 'text-4xl md:text-5xl' : 'text-2xl'} ${style.text}`}>
+                          {s.name}
+                      </h3>
+                      
+                      <p class={`text-gray-600 dark:text-gray-400 ${isGold ? 'text-lg line-clamp-3' : 'text-sm line-clamp-3'}`}>
+                          {s.description}
+                      </p>
+
+                      <div class="mt-auto pt-6 flex items-center gap-2 font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                          <span class={style.iconColor}>View Details</span>
+                          <span class="text-xl leading-none">&rarr;</span>
+                      </div>
+                  </div>
+              </div>
+            </button>
+            <SponsorModal sponsor={s} />
+          </div>
+        ))}
+      </div>
+
+      {/* Nav Controls (Hidden on mobile) */}
+      <div class="swiper-pagination"></div>
+      <div class={`swiper-button-prev ${prevClass} !hidden md:!flex after:!text-gray-400 dark:after:!text-gray-600`}></div>
+      <div class={`swiper-button-next ${nextClass} !hidden md:!flex after:!text-gray-400 dark:after:!text-gray-600`}></div>
+    </div>
+  )}
+</section>
+
+<script>
+  // Global modal opener helper (ensure your Modal component exposes this or use a store)
+  window.openModal = (id) => {
+    const modal = document.getElementById(id); // Adjust based on your SponsorModal implementation
+    if (modal) modal.showModal(); // Or toggle class 'hidden'
+  };
+</script>
+
+<script>
+  // --- 2. Import Swiper Modules (NPM Method) ---
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+  // We need to define the function to init swiper so we can call it for every instance
+  function initSwiper(className, prevClass, nextClass, desktopSlides) {
+    if (!document.querySelector(`.${className}`)) return;
+
+    new Swiper(`.${className}`, {
+      modules: [Navigation, Pagination, Autoplay], // Enable modules here
+      slidesPerView: 1, // Default (mobile)
+      spaceBetween: 20,
+      loop: true,
+      grabCursor: true,
+      autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+      },
+      pagination: {
+        el: `.${className} .swiper-pagination`,
+        clickable: true,
+      },
+      navigation: {
+        prevEl: `.${prevClass}`,
+        nextEl: `.${nextClass}`,
+      },
+      breakpoints: {
+        640: { 
+            slidesPerView: Math.min(desktopSlides, 1),
+            spaceBetween: 20 
+        },
+        768: { 
+            slidesPerView: Math.min(desktopSlides, 2),
+            spaceBetween: 30 
+        },
+        1024: { 
+            slidesPerView: desktopSlides, 
+            spaceBetween: 40 
+        },
+      },
+    });
+  }
+
+  // Find all sponsor sections and initialize them based on data attributes or specific classes
+  // However, since we used define:vars (see below), we can do this per component instance:
+</script>
+
+<script define:vars={{ swiperClass, prevClass, nextClass, desktopSlides }}>
+  // This script runs for EACH instance of the component on the page
+  // We import Swiper dynamically or use the one imported in the script tag above.
+  // NOTE: Astro scripts with imports are treated as modules. 
+  
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+  document.addEventListener('DOMContentLoaded', () => {
+      new Swiper(`.${swiperClass}`, {
+        modules: [Navigation, Pagination, Autoplay],
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        grabCursor: true,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        },
+        pagination: {
+          el: `.${swiperClass} .swiper-pagination`,
+          clickable: true,
+        },
+        navigation: {
+          prevEl: `.${prevClass}`,
+          nextEl: `.${nextClass}`,
+        },
+        breakpoints: {
+          640: { slidesPerView: Math.min(desktopSlides, 1) }, // Tablet portrait
+          768: { slidesPerView: Math.min(desktopSlides, 2) }, // Tablet landscape
+          1024: { slidesPerView: desktopSlides }, // Desktop
+        }
+      });
+  });
+</script>
+
+<style>
+/* Custom override for swiper bullet colors */
+:global(.swiper-pagination-bullet-active) {
+    @apply bg-gray-800 dark:bg-white;
+}
+</style>
