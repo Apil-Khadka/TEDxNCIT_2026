@@ -28,7 +28,7 @@ interface Props {
 const { title, tier, sponsors } = Astro.props
 
 // Unique Identifiers
-const uid = `${tier}-${Math.random().toString(36).substr(2, 9)}`
+const uid = `${tier}-${Math.random().toString(36).substring(2, 11)}`
 const swiperClass = `swiper-${uid}`
 const prevClass = `prev-${uid}`
 const nextClass = `next-${uid}`
@@ -72,6 +72,9 @@ const tierStyles = {
   community: {
     icon: '👥', // community / people
     iconColor: 'text-red-500 dark:text-red-400',
+    navBg:
+      'bg-red-100 hover:bg-red-200 dark:bg-red-900/40 dark:hover:bg-red-800/60',
+    navIcon: 'text-red-700 dark:text-red-300',
   },
 }
 
@@ -169,7 +172,15 @@ const style = tierStyles[tier]
 
 <script>
   // Global modal opener
-  window.openSponsorModal = (id, tier) => {
+  declare global {
+    interface Window {
+      openSponsorModal: (id: string, tier: string) => void
+      closeSponsorModal: (id: string) => void
+      openModal: (id: string) => void
+    }
+  }
+
+  window.openSponsorModal = (id: string, tier: string) => {
     const modal = document.getElementById(`modal-${id}`)
     if (modal) {
       modal.classList.remove('hidden')
@@ -178,7 +189,7 @@ const style = tierStyles[tier]
     }
   }
 
-  window.closeSponsorModal = (id) => {
+  window.closeSponsorModal = (id: string) => {
     const modal = document.getElementById(`modal-${id}`)
     if (modal) {
       modal.classList.add('hidden')
@@ -187,7 +198,7 @@ const style = tierStyles[tier]
   }
 
   // Legacy support for openModal (used by SponsorCard/Grid)
-  window.openModal = (id) => {
+  window.openModal = (id: string) => {
     const dataEl = document.getElementById(`data-${id}`)
     if (dataEl) {
       const tier = dataEl.getAttribute('data-tier') || 'default'
@@ -227,7 +238,7 @@ const style = tierStyles[tier]
           `[${index + 1}] Initializing ${tier} swiper: ${slideCount} slides, ${desktopSlides} per view`
         )
 
-        const swiperInstance = new Swiper(container, {
+        new Swiper(container as HTMLElement, {
           modules: [Navigation, Pagination, Autoplay],
           slidesPerView: 1,
           spaceBetween: 20,
@@ -271,7 +282,7 @@ const style = tierStyles[tier]
             init: function () {
               console.log(`✓ ${tier} swiper initialized successfully`)
             },
-            slideChange: function () {
+            slideChange: function (this: any) {
               console.log(
                 `${tier} swiper: slide changed to ${this.activeIndex}`
               )

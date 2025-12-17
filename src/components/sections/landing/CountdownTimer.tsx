@@ -17,7 +17,7 @@ function CountdownTimer({ eventDate }: CountdownTimerProps) {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTimeRemaining(getTimeRemaining(eventDate));
-    }, 1000);
+    }, 1000) as unknown as number;
 
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, [eventDate]);

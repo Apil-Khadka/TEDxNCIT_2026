@@ -1,5 +1,9 @@
 ---
-interface SponsorCardProps {
+const {
+  sponsor,
+  tier = 'default',
+  size = 'medium',
+} = Astro.props as {
   sponsor: {
     id: string
     name: string
@@ -12,8 +16,6 @@ interface SponsorCardProps {
   tier?: 'gold' | 'silver' | 'bronze' | 'community' | 'default'
   size?: 'large' | 'medium' | 'small'
 }
-
-const { sponsor, tier = 'default', size = 'medium' } = Astro.props
 
 // Tier styles with proper hierarchy
 const tiers = {
@@ -49,9 +51,9 @@ const tiers = {
     imgBg: 'bg-white dark:bg-neutral-800/50',
     imgFilter: 'group-hover:scale-105 drop-shadow-lg brightness-110',
     overlayGlow:
-      'bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700/30 dark:to-gray-600/30',
+      'bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-700/30 dark:to-gray-600/30',
     overlaySize: 'w-72 h-72 -mb-20 -mr-20',
-    overlayOpacity: 'opacity-30',
+    overlayOpacity: 'opacity-60',
   },
   bronze: {
     border: 'border-orange-300 dark:border-orange-600',
@@ -67,9 +69,10 @@ const tiers = {
     imgBg: 'bg-gray-50 dark:bg-neutral-800/50',
     imgFilter:
       'grayscale-[0.3] opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.03]',
-    overlayGlow: 'bg-orange-50 dark:bg-orange-900/10',
+    overlayGlow:
+      'bg-gradient-to-br from-orange-200 to-orange-300 dark:bg-orange-900/10',
     overlaySize: 'w-60 h-60 -mb-16 -mr-16',
-    overlayOpacity: 'opacity-20',
+    overlayOpacity: 'opacity-50',
   },
   community: {
     border: 'border-indigo-400 dark:border-indigo-500',
@@ -138,8 +141,10 @@ const sizes = {
   },
 }
 
-const currentTier = tiers[tier]
-const currentSize = sizes[size]
+const isLowerRightGlow = tier === 'silver' || tier === 'bronze'
+
+const currentTier = tiers[tier as keyof typeof tiers]
+const currentSize = sizes[size as keyof typeof sizes]
 const isLarge = size === 'large'
 ---
 
@@ -151,8 +156,15 @@ const isLarge = size === 'large'
     >
       <!-- Decorative Glow Overlay -->
       <div
-        class={`absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 ${currentTier.overlayGlow} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}
-      ></div>
+        class={`absolute
+    ${isLowerRightGlow ? 'bottom-0 right-0 -mb-20 -mr-20' : 'top-0 right-0 -mt-20 -mr-20'}
+    w-80 h-80
+    ${currentTier.overlayGlow}
+    rounded-full blur-3xl
+    opacity-0 group-hover:opacity-100
+    transition-opacity duration-700
+    pointer-events-none
+  `}></div>
 
       <!-- Card Content -->
       <div class={`flex relative z-10 h-full ${currentSize.layout}`}>

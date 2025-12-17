@@ -1,5 +1,5 @@
 ---
-interface SponsorGridProps {
+const { sponsors } = Astro.props as {
   sponsors: Array<{
     id: string
     name: string
@@ -10,7 +10,6 @@ interface SponsorGridProps {
     img: { src: string }
   }>
 }
-const { sponsors } = Astro.props
 ---
 
 <div
