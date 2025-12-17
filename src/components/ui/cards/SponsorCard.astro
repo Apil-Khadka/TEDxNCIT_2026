@@ -9,58 +9,86 @@ interface SponsorCardProps {
     url: string
     img: any
   }
-  tier?: 'gold' | 'silver' | 'bronze' | 'default'
+  tier?: 'gold' | 'silver' | 'bronze' | 'community' | 'default'
   size?: 'large' | 'medium' | 'small'
 }
 
 const { sponsor, tier = 'default', size = 'medium' } = Astro.props
 
-// Tier styles
+// Tier styles with proper hierarchy
 const tiers = {
   gold: {
-    border: 'border-yellow-400 dark:border-yellow-500',
-    borderHover: 'hover:border-yellow-500 dark:hover:border-yellow-400',
-    shadow: 'shadow-xl hover:shadow-2xl',
+    border: 'border-red-500 dark:border-red-400',
+    borderHover: 'hover:border-red-600 dark:hover:border-red-300',
+    shadow: 'shadow-2xl hover:shadow-[0_0_50px_rgba(239,68,68,0.5)]',
     glowHover:
-      'group-hover:shadow-[0_0_80px_rgba(250,204,21,0.4)] dark:group-hover:shadow-[0_0_100px_rgba(250,204,21,0.3)]',
-    bgCard:
-      'bg-gradient-to-br yellow-50 via-yellow-100 to-amber-50 dark:from-neutral-900 dark:via-yellow-950/20 dark:to-amber-950/30',
-    badge: 'bg-gradient-to-r from-yellow-500 to-amber-600 text-white',
-    titleColor: 'text-gray-900 dark:text-yellow-50',
-    descColor: 'text-gray-700 dark:text-gray-300',
-    imgBg: 'bg-white dark:bg-neutral-800/50',
-    imgFilter: 'group-hover:scale-105',
-    overlayGlow: 'bg-yellow-100 dark:bg-yellow-900/20',
+      'group-hover:shadow-[0_0_120px_rgba(220,38,38,0.6)] dark:group-hover:shadow-[0_0_140px_rgba(248,113,113,0.5)]',
+    bgCard: 'bg-white dark:bg-neutral-900',
+    badge:
+      'bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white font-bold shadow-xl',
+    titleColor: 'text-red-950 dark:text-red-100',
+    descColor: 'text-red-900 dark:text-red-200',
+    imgBg: 'bg-white dark:bg-neutral-800/80',
+    imgFilter: 'group-hover:scale-110 drop-shadow-xl',
+    overlayGlow:
+      'bg-gradient-to-br from-red-300 to-red-400 dark:from-red-700/40 dark:to-red-800/40',
+    overlaySize: 'w-96 h-96 -mt-24 -mr-24',
+    overlayOpacity: 'opacity-50',
   },
   silver: {
-    border: 'border-slate-300 dark:border-slate-600',
-    borderHover: 'hover:border-slate-400 dark:hover:border-slate-500',
-    shadow: 'shadow-lg hover:shadow-xl',
+    border: 'border-gray-300 dark:border-gray-400',
+    borderHover: 'hover:border-gray-200 dark:hover:border-gray-300',
+    shadow: 'shadow-xl hover:shadow-[0_0_35px_rgba(229,231,235,0.4)]',
     glowHover:
-      'group-hover:shadow-[0_0_50px_rgba(148,163,184,0.25)] dark:group-hover:shadow-[0_0_60px_rgba(148,163,184,0.2)]',
-    bgCard: 'bg-gray-50 dark:bg-neutral-850',
-    badge: 'bg-gradient-to-r from-slate-500 to-gray-600 text-white',
-    titleColor: 'text-slate-900 dark:text-slate-200',
-    descColor: 'text-slate-700 dark:text-slate-400',
+      'group-hover:shadow-[0_0_90px_rgba(229,231,235,0.7)] dark:group-hover:shadow-[0_0_110px_rgba(209,213,219,0.5)]',
+    bgCard: 'bg-white dark:bg-neutral-900',
+    badge:
+      'bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300 text-gray-900 font-bold shadow-lg',
+    titleColor: 'text-gray-900 dark:text-gray-100',
+    descColor: 'text-gray-700 dark:text-gray-300',
     imgBg: 'bg-white dark:bg-neutral-800/50',
-    imgFilter:
-      'grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105',
-    overlayGlow: 'bg-slate-100 dark:bg-slate-800/30',
+    imgFilter: 'group-hover:scale-105 drop-shadow-lg brightness-110',
+    overlayGlow:
+      'bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700/30 dark:to-gray-600/30',
+    overlaySize: 'w-72 h-72 -mb-20 -mr-20',
+    overlayOpacity: 'opacity-30',
   },
   bronze: {
-    border: 'border-orange-400 dark:border-orange-600',
-    borderHover: 'hover:border-orange-500 dark:hover:border-orange-500',
+    border: 'border-orange-300 dark:border-orange-600',
+    borderHover: 'hover:border-orange-400 dark:hover:border-orange-500',
     shadow: 'shadow-md hover:shadow-lg',
     glowHover:
-      'group-hover:shadow-[0_0_40px_rgba(251,146,60,0.2)] dark:group-hover:shadow-[0_0_50px_rgba(251,146,60,0.15)]',
-    bgCard: 'bg-orange-50 dark:bg-neutral-875',
-    badge: 'bg-gradient-to-r from-orange-500 to-amber-600 text-white',
-    titleColor: 'text-orange-800 dark:text-orange-200',
-    descColor: 'text-orange-700/80 dark:text-orange-300/80',
+      'group-hover:shadow-[0_0_50px_rgba(249,115,22,0.25)] dark:group-hover:shadow-[0_0_60px_rgba(251,146,60,0.2)]',
+    bgCard: 'bg-white dark:bg-neutral-900',
+    badge:
+      'bg-gradient-to-r from-orange-500 to-orange-600 text-white font-medium shadow-sm',
+    titleColor: 'text-gray-900 dark:text-gray-200',
+    descColor: 'text-gray-700 dark:text-gray-400',
+    imgBg: 'bg-gray-50 dark:bg-neutral-800/50',
+    imgFilter:
+      'grayscale-[0.3] opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.03]',
+    overlayGlow: 'bg-orange-50 dark:bg-orange-900/10',
+    overlaySize: 'w-60 h-60 -mb-16 -mr-16',
+    overlayOpacity: 'opacity-20',
+  },
+  community: {
+    border: 'border-indigo-400 dark:border-indigo-500',
+    borderHover: 'hover:border-indigo-500 dark:hover:border-indigo-400',
+    shadow: 'shadow-md hover:shadow-[0_0_25px_rgba(99,102,241,0.2)]',
+    glowHover:
+      'group-hover:shadow-[0_0_60px_rgba(99,102,241,0.3)] dark:group-hover:shadow-[0_0_80px_rgba(129,140,248,0.25)]',
+    bgCard: 'bg-white dark:bg-neutral-900',
+    badge:
+      'bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 text-white font-medium shadow-md',
+    titleColor: 'text-indigo-900 dark:text-indigo-200',
+    descColor: 'text-indigo-700 dark:text-indigo-300',
     imgBg: 'bg-white dark:bg-neutral-800/50',
     imgFilter:
       'grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105',
-    overlayGlow: 'bg-orange-100 dark:bg-orange-900/20',
+    overlayGlow:
+      'bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/20 dark:to-purple-900/20',
+    overlaySize: 'w-80 h-80 -mt-20 -mr-20',
+    overlayOpacity: 'opacity-0',
   },
   default: {
     border: 'border-gray-200 dark:border-neutral-700',
@@ -74,6 +102,8 @@ const tiers = {
     imgBg: 'bg-gray-50 dark:bg-neutral-900/50',
     imgFilter: 'opacity-70 group-hover:opacity-100',
     overlayGlow: 'bg-gray-100 dark:bg-gray-800/30',
+    overlaySize: 'w-80 h-80 -mt-20 -mr-20',
+    overlayOpacity: 'opacity-0',
   },
 }
 
@@ -144,7 +174,7 @@ const isLarge = size === 'large'
           <!-- Badge -->
           <div class="mb-3">
             <span
-              class={`inline-block px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${currentTier.badge}`}
+              class={`inline-block px-3 py-1.5 rounded-full text-xs uppercase tracking-wider ${currentTier.badge}`}
             >
               {sponsor.type}
             </span>
