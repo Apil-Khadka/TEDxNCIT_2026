@@ -19,253 +19,47 @@ import { REGISTER_SEO, OG, SITE } from '@data/constants'
     <h1 class="mb-4 text-center text-3xl font-bold dark:text-white">
       Register for <span class="text-red-600 dark:text-red-400">TEDx</span>NCIT
     </h1>
+
     <p class="mb-8 text-center font-bold dark:text-white">
       Join us for an inspiring event and connect with like-minded individuals.
     </p>
 
-    <!-- Progress Bar -->
-    <div class="mb-8">
-      <div class="relative">
-        <div class="mb-4 flex justify-between">
-          <span class="text-lg font-semibold text-red-600 dark:text-red-400"
-            >1. Information</span
-          >
-          <span class="text-lg font-semibold text-red-600 dark:text-red-400"
-            >2. Payment</span
-          >
-          <span class="text-lg font-semibold text-red-600 dark:text-red-400"
-            >3. Thank You</span
-          >
-        </div>
-        <div class="flex items-center">
-          <div
-            id="progress-bar"
-            class="h-2 w-2/3 rounded-r-full bg-red-200 dark:bg-red-400"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Form Handling Script -->
-    <script>
-      function updateProgressBar(step: number) {
-        const progressBar = document.getElementById('progress-bar')
-        if (progressBar) {
-          const progressWidth = step === 1 ? '0%' : step === 2 ? '50%' : '100%'
-          progressBar.style.width = progressWidth
-        }
-      }
-
-      function showSection(section: string) {
-        document.querySelectorAll('.form-section').forEach((el) => {
-          el.classList.add('hidden')
-        })
-        const sectionElement = document.getElementById(section)
-        if (sectionElement) {
-          sectionElement.classList.remove('hidden')
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        let currentStep = 1
-        showSection('info-section')
-        updateProgressBar(currentStep)
-
-        const nextBtn = document.querySelector('#next-btn')
-        const prevBtn = document.querySelector('#prev-btn')
-        const submitBtn = document.querySelector('#submit-btn')
-        const form = document.querySelector('form')
-
-        if (nextBtn) {
-          nextBtn.addEventListener('click', () => {
-            if (currentStep < 3) {
-              currentStep++
-              showSection(
-                currentStep === 2 ? 'payment-section' : 'thank-you-section'
-              )
-              updateProgressBar(currentStep)
-            }
-          })
-        }
-
-        if (prevBtn) {
-          prevBtn.addEventListener('click', () => {
-            if (currentStep > 1) {
-              currentStep--
-              showSection(
-                currentStep === 1 ? 'info-section' : 'payment-section'
-              )
-              updateProgressBar(currentStep)
-            }
-          })
-        }
-
-        if (submitBtn && form) {
-          submitBtn.addEventListener('click', async (event) => {
-            event.preventDefault()
-            const formData = new FormData(form)
-            const data = Object.fromEntries(formData.entries())
-
-            try {
-              const response = await fetch('/api/sendEmail', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: { 'Content-Type': 'application/json' },
-              })
-
-              if (response.ok) {
-                showSection('thank-you-section')
-                updateProgressBar(3)
-              } else {
-                alert(
-                  'There was an error submitting your registration. Please try again.'
-                )
-              }
-            } catch (error) {
-              console.error('Error submitting form', error)
-              alert('There was an error. Please try again later.')
-            }
-          })
-        }
-      })
-    </script>
-
-    <!-- Form Component -->
-    <form class="space-y-6">
-      <!-- Information Section -->
-      <div id="info-section" class="form-section">
-        <div class="mb-6">
-          <label
-            for="name"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Name
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Enter your full name"
-            required
-            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-          />
-        </div>
-
-        <div class="mb-6">
-          <label
-            for="email"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Enter your email address"
-            required
-            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-          />
-        </div>
-
-        <div class="mb-6">
-          <label
-            for="phone"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Phone Number
-          </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder="Enter your phone number"
-            required
-            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-          />
-        </div>
-
-        <div class="mb-6">
-          <label
-            for="message"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Why do you want to attend TEDxNCIT?
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows="4"
-            placeholder="Share your thoughts..."
-            required
-            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-          ></textarea>
-        </div>
-
-        <div class="flex justify-between">
-          <button
-            id="next-btn"
-            type="button"
-            class="hover:bg-yellow-600 flex justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
-          >
-            Next
-          </button>
-        </div>
-      </div>
-    </form>
-
-    <!-- Payment Section -->
-    <div id="payment-section" class="form-section hidden">
-      <div class="mb-6">
-        <img
-          src="/path/to/qr-code-placeholder.png"
-          alt="QR Code"
-          class="mb-4 h-auto w-full"
-        />
-        <label
-          for="payment-image"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Upload Payment Confirmation
-        </label>
-        <input
-          id="payment-image"
-          name="payment-image"
-          type="file"
-          accept="image/*"
-          required
-          class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-red-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-        />
-      </div>
-
-      <div class="flex justify-between">
-        <button
-          id="prev-btn"
-          type="button"
-          class="flex justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-        >
-          Previous
-        </button>
-        <button
-          id="submit-btn"
-          type="button"
-          class="hover:bg-yellow-600 flex justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
-        >
-          Submit
-        </button>
-      </div>
-    </div>
-
-    <!-- Thank You Section -->
-    <div id="thank-you-section" class="form-section hidden">
-      <h2
-        class="mb-4 text-center text-2xl font-bold text-gray-900 dark:text-white"
-      >
-        Thank You!
-      </h2>
-      <p class="text-center text-gray-600 dark:text-gray-400">
-        Your registration has been successfully submitted. We will be in touch
-        with you soon.
-      </p>
-    </div>
+    <!-- ✅ Tally Form Embed -->
+    <iframe
+      data-tally-src="https://tally.so/embed/pbderE?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+      loading="lazy"
+      width="100%"
+      height="672"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      title="TEDxNCIT Registration"
+      class="rounded-lg"></iframe>
   </section>
+
+  <!-- ✅ Tally Embed Script -->
+  <script is:inline>
+    var d = document,
+      w = 'https://tally.so/widgets/embed.js',
+      v = function () {
+        if (typeof Tally !== 'undefined') {
+          Tally.loadEmbeds()
+        } else {
+          d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(
+            function (e) {
+              e.src = e.dataset.tallySrc
+            }
+          )
+        }
+      }
+
+    if (typeof Tally !== 'undefined') v()
+    else if (!d.querySelector('script[src="' + w + '"]')) {
+      var s = d.createElement('script')
+      s.src = w
+      s.onload = v
+      s.onerror = v
+      d.body.appendChild(s)
+    }
+  </script>
 </MainLayout>
