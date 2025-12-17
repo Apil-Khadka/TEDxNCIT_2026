@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import colors from 'tailwindcss/colors';
+
 export default {
   content: [
     "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
@@ -21,13 +22,15 @@ export default {
       white: "#ffffff",
       gray: colors.gray,
       indigo: colors.indigo,
-      neutral: colors.neutral,  // Used mainly for text color
+      neutral: colors.neutral,
+      
+      // Your custom brand colors
       yellow: {
         50: "#FFFF",
         100: "#EB0028",
         400: "#EB0028",
         500: "#EB0028",
-      }, // Accent colors, used mainly for star color, heading and buttons
+      },
       red: {
         100: "#FFE5E9", 
         200: "#FFB3BA",
@@ -35,8 +38,15 @@ export default {
         400: "#EB0028",
         500: "#fc283c",
         600: "#EB0028",
-      }, // Primary colors, used mainly for links, buttons and svg icons
-      zinc: colors.zinc, // Used mainly for box-shadow
+      },
+      
+      // Add the missing colors for your tier modals
+      orange: colors.orange,
+      amber: colors.amber,
+      violet: colors.violet,
+      purple: colors.purple,
+      
+      zinc: colors.zinc,
     },
     extend: {
       animation: {
