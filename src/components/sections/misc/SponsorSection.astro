@@ -1,188 +1,232 @@
 ---
-import SponsorCard from '@components/ui/cards/SponsorCard.astro';
-import SponsorGrid from '@components/ui/blocks/SponsorGrid.astro';
-import SponsorModal from "@components/ui/cards/SponsorModal.astro";
+import SponsorCard from '@components/ui/cards/SponsorCard.astro'
+import SponsorGrid from '@components/ui/blocks/SponsorGrid.astro'
+import SponsorModal from '@components/ui/cards/SponsorModal.astro'
 
 // Import Swiper Styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 // Types
 interface Sponsor {
-  id: string;
-  name: string;
-  type: string;
-  description: string;
-  longDescription: string;
-  url: string;
-  img: any;
+  id: string
+  name: string
+  type: string
+  description: string
+  longDescription: string
+  url: string
+  img: any
 }
 
 interface Props {
-  title: string;
-  tier: "gold" | "silver" | "bronze" | "community";
-  sponsors: Sponsor[];
+  title: string
+  tier: 'gold' | 'silver' | 'bronze' | 'community'
+  sponsors: Sponsor[]
 }
 
-const { title, tier, sponsors } = Astro.props;
+const { title, tier, sponsors } = Astro.props
 
 // Unique Identifiers
-const uid = `${tier}-${Math.random().toString(36).substr(2, 9)}`;
-const swiperClass = `swiper-${uid}`;
-const prevClass = `prev-${uid}`;
-const nextClass = `next-${uid}`;
-const paginationClass = `pagination-${uid}`;
+const uid = `${tier}-${Math.random().toString(36).substr(2, 9)}`
+const swiperClass = `swiper-${uid}`
+const prevClass = `prev-${uid}`
+const nextClass = `next-${uid}`
+const paginationClass = `pagination-${uid}`
 
 // Configuration Logic
-const isCommunity = tier === "community";
-const isGold = tier === "gold";
-const isSilver = tier === "silver";
-const isBronze = tier === "bronze";
+const isCommunity = tier === 'community'
+const isGold = tier === 'gold'
+const isSilver = tier === 'silver'
+const isBronze = tier === 'bronze'
 
 // Slides per view configuration
-const desktopSlides = isGold ? 1 : isSilver ? 2 : 3;
+const desktopSlides = isGold ? 1 : isSilver ? 2 : 3
 
 // Size mapping for SponsorCard
-const cardSize = isGold ? 'large' : isSilver ? 'medium' : 'small';
+const cardSize = isGold ? 'large' : isSilver ? 'medium' : 'small'
 
 // Theme Map
 const tierStyles = {
   gold: {
-    icon: "🏆",   // trophy for gold
-    iconColor: "text-yellow-600 dark:text-yellow-400",
-    navBg: "bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900/40 dark:hover:bg-yellow-800/60",
-    navIcon: "text-yellow-700 dark:text-yellow-300"
+    icon: '🏆', // trophy for gold
+    iconColor: 'text-yellow-600 dark:text-yellow-400',
+    navBg:
+      'bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900/40 dark:hover:bg-yellow-800/60',
+    navIcon: 'text-yellow-700 dark:text-yellow-300',
   },
   silver: {
-    icon: "🎖️",   // military medal for silver (no number)
-    iconColor: "text-slate-500 dark:text-slate-400",
-    navBg: "bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700",
-    navIcon: "text-slate-700 dark:text-slate-300"
+    icon: '🎖️', // military medal for silver (no number)
+    iconColor: 'text-slate-500 dark:text-slate-400',
+    navBg:
+      'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700',
+    navIcon: 'text-slate-700 dark:text-slate-300',
   },
   bronze: {
-    icon: "🎗️",   // ribbon/medal for bronze (no number)
-    iconColor: "text-orange-600 dark:text-orange-400",
-    navBg: "bg-orange-100 hover:bg-orange-200 dark:bg-orange-900/40 dark:hover:bg-orange-800/60",
-    navIcon: "text-orange-700 dark:text-orange-300"
+    icon: '🎗️', // ribbon/medal for bronze (no number)
+    iconColor: 'text-orange-600 dark:text-orange-400',
+    navBg:
+      'bg-orange-100 hover:bg-orange-200 dark:bg-orange-900/40 dark:hover:bg-orange-800/60',
+    navIcon: 'text-orange-700 dark:text-orange-300',
   },
   community: {
-    icon: "👥",   // community / people
-    iconColor: "text-red-500 dark:text-red-400"
-  }
-};
+    icon: '👥', // community / people
+    iconColor: 'text-red-500 dark:text-red-400',
+  },
+}
 
-const style = tierStyles[tier];
+const style = tierStyles[tier]
 ---
 
 <section class="relative py-12">
   {/* Header */}
-  <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-neutral-100 mb-12 flex items-center justify-center gap-3 relative z-10">
-    <span class={`text-5xl md:text-6xl ${style.iconColor} drop-shadow-lg`}>{style.icon}</span> 
+  <h2
+    class="relative z-10 mb-12 flex items-center justify-center gap-3 text-4xl font-bold text-gray-900 dark:text-neutral-100 md:text-5xl"
+  >
+    <span class={`text-5xl md:text-6xl ${style.iconColor} drop-shadow-lg`}
+      >{style.icon}</span
+    >
     {title}
   </h2>
 
   {/* COMMUNITY TIER (Grid Layout) */}
-  {isCommunity ? (
-    <div class="max-w-7xl mx-auto px-4">
-      <SponsorGrid sponsors={sponsors} />
-      {sponsors.map((s) => (
-        <SponsorModal sponsor={s} tier={tier} />
-      ))}
-    </div>
-  ) : (
-  
-  /* GOLD / SILVER / BRONZE TIERS (Swiper Carousel) */
-    <div class="relative max-w-[1400px] mx-auto px-4 lg:px-12">
-      <div 
-        class={`${swiperClass} swiper pb-12 overflow-hidden`}
-        data-swiper-config={JSON.stringify({
-          tier,
-          desktopSlides,
-          prevClass,
-          nextClass,
-          paginationClass,
-          slideCount: sponsors.length
-        })}
-      >
-        <div class="swiper-wrapper">
-          {sponsors.map((s) => (
-            <>
+  {
+    isCommunity ? (
+      <div class="mx-auto max-w-7xl px-4">
+        <SponsorGrid sponsors={sponsors} />
+      </div>
+    ) : (
+      /* GOLD / SILVER / BRONZE TIERS (Swiper Carousel) */
+      <div class="relative mx-auto max-w-[1400px] px-4 lg:px-12">
+        <div
+          class={`${swiperClass} swiper overflow-hidden pb-12`}
+          data-swiper-config={JSON.stringify({
+            tier,
+            desktopSlides,
+            prevClass,
+            nextClass,
+            paginationClass,
+            slideCount: sponsors.length,
+          })}
+        >
+          <div class="swiper-wrapper">
+            {sponsors.map((s) => (
               <SponsorCard sponsor={s} tier={tier} size={cardSize} />
-              <SponsorModal sponsor={s} tier={tier} />
-            </>
-          ))}
+            ))}
+          </div>
+
+          {/* Pagination */}
+          <div
+            class={`${paginationClass} swiper-pagination !relative !bottom-0 mt-8`}
+          />
         </div>
 
-        {/* Pagination */}
-        <div class={`${paginationClass} swiper-pagination !relative !bottom-0 mt-8`}></div>
-      </div>
+        {/* Navigation Arrows */}
+        <button
+          class={`${prevClass} swiper-nav-btn swiper-nav-prev ${style.navBg}`}
+          aria-label="Previous"
+        >
+          <svg
+            class={`h-6 w-6 ${style.navIcon} transition-colors`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="3"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
 
-      {/* Navigation Arrows */}
-      <button class={`${prevClass} swiper-nav-btn swiper-nav-prev ${style.navBg}`} aria-label="Previous">
-        <svg class={`w-6 h-6 ${style.navIcon} transition-colors`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/>
-        </svg>
-      </button>
-      
-      <button class={`${nextClass} swiper-nav-btn swiper-nav-next ${style.navBg}`} aria-label="Next">
-        <svg class={`w-6 h-6 ${style.navIcon} transition-colors`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
-        </svg>
-      </button>
-    </div>
-  )}
+        <button
+          class={`${nextClass} swiper-nav-btn swiper-nav-next ${style.navBg}`}
+          aria-label="Next"
+        >
+          <svg
+            class={`h-6 w-6 ${style.navIcon} transition-colors`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="3"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+    )
+  }
+
+  {/* Render modals outside of carousel/grid containers */}
+  {sponsors.map((s) => <SponsorModal sponsor={s} tier={tier} />)}
 </section>
 
 <script>
   // Global modal opener
   window.openSponsorModal = (id, tier) => {
-    const modal = document.getElementById(`modal-${id}`);
+    const modal = document.getElementById(`modal-${id}`)
     if (modal) {
-      modal.classList.remove('hidden');
-      modal.setAttribute('data-tier', tier);
-      document.body.style.overflow = 'hidden';
+      modal.classList.remove('hidden')
+      modal.setAttribute('data-tier', tier)
+      document.body.style.overflow = 'hidden'
     }
-  };
+  }
 
   window.closeSponsorModal = (id) => {
-    const modal = document.getElementById(`modal-${id}`);
+    const modal = document.getElementById(`modal-${id}`)
     if (modal) {
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
+      modal.classList.add('hidden')
+      document.body.style.overflow = 'auto'
     }
-  };
-  
+  }
+
   // Legacy support for openModal (used by SponsorCard/Grid)
   window.openModal = (id) => {
-    const dataEl = document.getElementById(`data-${id}`);
+    const dataEl = document.getElementById(`data-${id}`)
     if (dataEl) {
-      const tier = dataEl.getAttribute('data-tier') || 'default';
-      window.openSponsorModal(id, tier);
+      const tier = dataEl.getAttribute('data-tier') || 'default'
+      window.openSponsorModal(id, tier)
     }
-  };
+  }
 </script>
 
 <script>
-  import Swiper from 'swiper';
-  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+  import Swiper from 'swiper'
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 
   function initializeSwipers() {
     // Find all swiper containers with config
-    const swiperContainers = document.querySelectorAll('[data-swiper-config]');
-    
-    console.log(`Found ${swiperContainers.length} swiper containers to initialize`);
-    
+    const swiperContainers = document.querySelectorAll('[data-swiper-config]')
+
+    console.log(
+      `Found ${swiperContainers.length} swiper containers to initialize`
+    )
+
     swiperContainers.forEach((container, index) => {
       try {
-        const configStr = container.getAttribute('data-swiper-config');
-        if (!configStr) return;
-        
-        const config = JSON.parse(configStr);
-        const { tier, desktopSlides, prevClass, nextClass, paginationClass, slideCount } = config;
-        
-        console.log(`[${index + 1}] Initializing ${tier} swiper: ${slideCount} slides, ${desktopSlides} per view`);
-        
+        const configStr = container.getAttribute('data-swiper-config')
+        if (!configStr) return
+
+        const config = JSON.parse(configStr)
+        const {
+          tier,
+          desktopSlides,
+          prevClass,
+          nextClass,
+          paginationClass,
+          slideCount,
+        } = config
+
+        console.log(
+          `[${index + 1}] Initializing ${tier} swiper: ${slideCount} slides, ${desktopSlides} per view`
+        )
+
         const swiperInstance = new Swiper(container, {
           modules: [Navigation, Pagination, Autoplay],
           slidesPerView: 1,
@@ -191,11 +235,15 @@ const style = tierStyles[tier];
           grabCursor: true,
           autoHeight: false,
           watchSlidesProgress: true,
-          autoplay: slideCount > desktopSlides ? {
-            delay: tier === 'gold' ? 5000 : tier === 'silver' ? 4500 : 4000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true
-          } : false,
+          autoplay:
+            slideCount > desktopSlides
+              ? {
+                  delay:
+                    tier === 'gold' ? 5000 : tier === 'silver' ? 4500 : 4000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }
+              : false,
           pagination: {
             el: `.${paginationClass}`,
             clickable: true,
@@ -206,44 +254,45 @@ const style = tierStyles[tier];
             nextEl: `.${nextClass}`,
           },
           breakpoints: {
-            640: { 
+            640: {
               slidesPerView: 1,
-              spaceBetween: 20 
+              spaceBetween: 20,
             },
-            768: { 
+            768: {
               slidesPerView: tier === 'bronze' ? 2 : tier === 'silver' ? 2 : 1,
-              spaceBetween: 24 
+              spaceBetween: 24,
             },
-            1024: { 
-              slidesPerView: desktopSlides, 
-              spaceBetween: 32 
+            1024: {
+              slidesPerView: desktopSlides,
+              spaceBetween: 32,
             },
           },
           on: {
-            init: function() {
-              console.log(`✓ ${tier} swiper initialized successfully`);
+            init: function () {
+              console.log(`✓ ${tier} swiper initialized successfully`)
             },
-            slideChange: function() {
-              console.log(`${tier} swiper: slide changed to ${this.activeIndex}`);
-            }
-          }
-        });
-        
+            slideChange: function () {
+              console.log(
+                `${tier} swiper: slide changed to ${this.activeIndex}`
+              )
+            },
+          },
+        })
       } catch (error) {
-        console.error(`Error initializing swiper ${index + 1}:`, error);
+        console.error(`Error initializing swiper ${index + 1}:`, error)
       }
-    });
+    })
   }
 
   // Initialize on page load
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeSwipers);
+    document.addEventListener('DOMContentLoaded', initializeSwipers)
   } else {
-    initializeSwipers();
+    initializeSwipers()
   }
-  
+
   // Also run after a short delay to ensure all DOM is ready
-  setTimeout(initializeSwipers, 100);
+  setTimeout(initializeSwipers, 100)
 </script>
 
 <style is:global>
@@ -256,31 +305,31 @@ const style = tierStyles[tier];
 
   /* Custom Swiper Pagination */
   .swiper-pagination-bullet {
-    @apply bg-gray-400 dark:bg-gray-600 opacity-60 transition-all duration-300;
+    @apply bg-gray-400 opacity-60 transition-all duration-300 dark:bg-gray-600;
     width: 10px;
     height: 10px;
   }
-  
+
   .swiper-pagination-bullet-active {
-    @apply bg-gray-800 dark:bg-gray-200 opacity-100;
+    @apply bg-gray-800 opacity-100 dark:bg-gray-200;
     width: 28px;
     border-radius: 5px;
   }
 
   /* Custom Navigation Buttons */
   .swiper-nav-btn {
-    @apply absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl border-2 border-gray-200 dark:border-neutral-700;
+    @apply absolute top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border-2 border-gray-200 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl dark:border-neutral-700;
   }
-  
+
   .swiper-nav-prev {
     @apply -left-4 lg:-left-6;
   }
-  
+
   .swiper-nav-next {
     @apply -right-4 lg:-right-6;
   }
 
   .swiper-button-disabled {
-    @apply opacity-30 pointer-events-none;
+    @apply pointer-events-none opacity-30;
   }
 </style>
