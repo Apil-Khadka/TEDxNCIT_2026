@@ -33,6 +33,17 @@ const socialIconMap: Record<string, string> = {
   website: "website",
   linkedIn: "linkedInFooter",
 };
+
+// const clipPath = "clip-path: polygon( 25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);"
+const clipPath = `clip-path: polygon(0 0, 100% 10%, 90% 100%, 10% 90%);`;
+// const clipPath = "clip-path: polygon( 10% 0%, 90% 0%, 100% 100%, 0% 100% );";
+// const clipPath= "clip-path: polygon( 0% 20%, 10% 0%, 40% 10%, 60% 0%, 90% 20%, 100% 50%, 90% 80%, 60% 100%, 40% 90%, 10% 100%, 0% 80% );";
+// const clipPath="clip-path: polygon( 0% 10%, 25% 0%, 50% 10%, 75% 0%, 100% 10%, 100% 90%, 75% 100%, 50% 90%, 25% 100%, 0% 90% );";
+// const clipPath="clip-path: polygon( 30% 0%, 70% 0%, 70% 20%, 85% 20%, 85% 40%, 70% 40%, 70% 100%, 30% 100%, 30% 40%, 15% 40%, 15% 20%, 30% 20% );";
+// const clipPath="clip-path: polygon(100% 0, 100% 35%, 65% 35%, 65% 100%, 66% 100%, 50% 100%, 36% 100%, 38% 36%, 0% 35%, 0 1%);";
+// const clipPath="clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);";
+// const clipPath="clip-path: polygon( 25% 0%, 50% 25%, 75% 0%, 100% 25%, 75% 50%, 100% 75%, 75% 100%, 50% 75%, 25% 100%, 0% 75%, 25% 50%, 0% 25% );";
+
 ---
 
 <section class="my-12 mb-20 ml-4 md:ml-8">
@@ -52,44 +63,54 @@ const socialIconMap: Record<string, string> = {
       members.map((member) => (
         <div class="group text-center">
           <div class="h-65 relative w-full overflow-hidden rounded-lg sm:h-72 md:h-96 lg:h-[400px] xl:h-[500px]">
-            <div class="relative w-full h-full">
-              <img
-                class="w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.45,0,0.55,1)] 
-                      grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110"
+          <!-- Clip wrapper -->
+          <div
+            class="relative w-full h-full overflow-hidden"
+            style={clipPath}
+          >
+            <svg viewBox="0 0 200 200" class="absolute w-full h-full">
+              <defs>
+                <mask id="textMask" maskUnits="userSpaceOnUse">
+                  <rect width="200" height="200" fill="white" />
+                  <text
+                    x="50%"
+                    y="50%"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                    font-size="120"
+                    font-weight="bold"
+                    fill="black"
+                  >
+                    T
+                  </text>
+                </mask>
+              </defs>
+            </svg>
 
-                    src={`${baseUrl}${member.img}`}
-                    srcset={`
-                      ${baseUrl}w_400,c_fill/${member.img}.${imageExtension} 400w,
-                      ${baseUrl}w_800,c_fill/${member.img}.${imageExtension} 800w,
-                      ${baseUrl}w_1200,c_fill/${member.img}.${imageExtension} 1200w
-                    `}
-                    sizes="(max-width: 600px) 400px, (max-width: 900px) 800px, 1200px"
-                    style="clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);"
-                    alt={member.imgAlt}
-                    loading="lazy"
-              />
-              {/* TODO: change above style clip */}
+            <img
+              class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.45,0,0.55,1)] grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 will-change-transform"
+              src={`${baseUrl}${member.img}`}
+              srcset={`
+                ${baseUrl}w_400,c_fill/${member.img}.${imageExtension} 400w,
+                ${baseUrl}w_800,c_fill/${member.img}.${imageExtension} 800w,
+                ${baseUrl}w_1200,c_fill/${member.img}.${imageExtension} 1200w
+              `}
+              sizes="(max-width: 600px) 400px, (max-width: 900px) 800px, 1200px"
+              alt={member.imgAlt}
+              loading="lazy"
+            />
 
-              <!-- Overlay -->
-              <div
-                class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-90 
-                      transition-opacity duration-500 ease-in-out"
-              ></div>
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-90 transition-opacity duration-500 ease-in-out"></div>
 
-              <!-- Optional overlay text or icon -->
-              <div
-                class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100  group-hover:translate-y-16
-                      transition-opacity duration-700  ease-in-out space-y-3"
-              >
-                <p class="text-red-500 text-lg font-semibold tracking-wide drop-shadow-md">
-                  {member.name}
-                </p>
-                <p class="text-red-200 text-lg font-semibold tracking-wide drop-shadow-md">
-                  {member.role}
-                </p>
-              </div>
+            <!-- Optional overlay text or icon -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 group-hover:translate-y-16 transition-opacity duration-700 ease-in-out space-y-3">
+              <p class="text-red-500 text-lg font-semibold tracking-wide drop-shadow-md">{member.name}</p>
+              <p class="text-red-200 text-lg font-semibold tracking-wide drop-shadow-md">{member.role}</p>
+            </div>
           </div>
-          </div>
+        </div>
+
           <h3 class="mt-4 text-lg font-bold text-neutral-900 dark:text-neutral-100">
             {member.name}
           </h3>
